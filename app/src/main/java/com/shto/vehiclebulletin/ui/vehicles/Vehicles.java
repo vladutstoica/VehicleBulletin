@@ -6,6 +6,11 @@ public class Vehicles {
 
     public static final Vehicles[] vehicles = {
             new Vehicles("text1", "text2"),
+            new Vehicles("text3", "text4"),
+            new Vehicles("text3", "text4"),
+            new Vehicles("text3", "text4"),
+            new Vehicles("text3", "text4"),
+            new Vehicles("text3", "text4"),
             new Vehicles("text3", "text4")
     };
 

@@ -28,22 +28,38 @@ public class VehiclesFragment extends Fragment {
                              ViewGroup container, Bundle savedInstanceState) {
         mVehiclesViewModel = new ViewModelProvider(this).get(VehiclesViewModel.class);
 
-        mRecyclerView = mRecyclerView.findViewById(R.id.vehicles_recycler_view);
+
+        //testing
+        View view = inflater.inflate(R.layout.fragment_vehicles, container, false);
+        mRecyclerView = view.findViewById(R.id.vehicles_recycler_view);
+        // TODO: make below like work
+        //mRecyclerView = inflater.inflate(R.layout.fragment_vehicles, container, false);
 
         // use this setting to improve performance if you know that changes
         // in content do not change the layout size of the RecyclerView
         mRecyclerView.setHasFixedSize(true);
 
+        //only testing
+        String[] text1 = new String[Vehicles.vehicles.length];
+        for (int i = 0; i < text1.length; i++) {
+            text1[i] = Vehicles.vehicles[i].getText1();
+        }
+
+        String[] text2 = new String[Vehicles.vehicles.length];
+        for (int i = 0; i < text2.length; i++) {
+            text2[i] = Vehicles.vehicles[i].getText2();
+        }
+
         // use a linear layout manager
-        mLayoutManager = new LinearLayoutManager(this);
+        mLayoutManager = new LinearLayoutManager(getContext());
         mRecyclerView.setLayoutManager(mLayoutManager);
 
         // specify an adapter
-        mAdapter = new VehiclesAdapter(myDataset);
+        mAdapter = new VehiclesAdapter(text1, text2);
         mRecyclerView.setAdapter(mAdapter);
 
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_vehicles, container, false);
+        return view;
     }
 
 }
