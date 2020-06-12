@@ -2,6 +2,7 @@ package com.shto.vehiclebulletin.ui.vehicles;
 
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -12,9 +13,12 @@ import com.shto.vehiclebulletin.R;
 
 public class VehiclesAdapter extends RecyclerView.Adapter {
 
-    // variable who hold vehicles data
-    private String[] text1;
-    private String[] text2;
+    // variable for cardView data
+    private String[] mLicencePlate;
+    private String[] mVehicleModel;
+    private String[] mRenew;
+    private String[] mTotalCost;
+    private int[] mVehicleLogo;
 
     // Provide a reference to the views used in the recycler view - what data the adapter should work with
     public static class ViewHolder extends RecyclerView.ViewHolder{
@@ -32,9 +36,12 @@ public class VehiclesAdapter extends RecyclerView.Adapter {
     }
 
     // pass the data to the adapter using constructor
-    public VehiclesAdapter(String[] text1, String[] text2) {
-        this.text1 = text1;
-        this.text2 = text2;
+    public VehiclesAdapter(String[] mLicencePlate, String[] mVehicleModel, String[] mRenew, String[] mTotalCost, int[] mVehicleLogo) {
+        this.mLicencePlate = mLicencePlate;
+        this.mVehicleModel = mVehicleModel;
+        this.mRenew = mRenew;
+        this.mTotalCost = mTotalCost;
+        this.mVehicleLogo = mVehicleLogo;
     }
 
     // Used to create the views
@@ -54,11 +61,16 @@ public class VehiclesAdapter extends RecyclerView.Adapter {
         // Set the values inside the given view
         CardView zafuk = (CardView) holder.itemView;
 
-        TextView textView = zafuk.findViewById(R.id.licence_plate);
-        textView.setText(text1[position]);
-        TextView textView1 = zafuk.findViewById(R.id.vehicle_model);
-        textView1.setText(text2[position]);
-
+        TextView mLicencePlateTextView = zafuk.findViewById(R.id.licence_plate);
+        mLicencePlateTextView.setText(mLicencePlate[position]);
+        TextView mVehicleModelTextView = zafuk.findViewById(R.id.vehicle_model);
+        mVehicleModelTextView.setText(mVehicleModel[position]);
+        TextView mRenewTextView = zafuk.findViewById(R.id.renew);
+        mRenewTextView.setText(mRenew[position]);
+        TextView mTotalCostTextView = zafuk.findViewById(R.id.total_cost);
+        mTotalCostTextView.setText(mTotalCost[position]);
+        ImageView mVehicleLogoImageView = zafuk.findViewById(R.id.vehicle_logo);
+        mVehicleLogoImageView.setImageDrawable(zafuk.getResources().getDrawable(mVehicleLogo[position]));
     }
 
     // Used to return the number of items in the data set
@@ -66,6 +78,6 @@ public class VehiclesAdapter extends RecyclerView.Adapter {
     public int getItemCount() {
         // Return the number of items in the data set
         // The number of the text1 array equals the number of data items in the recycler view
-        return text1.length;
+        return mLicencePlate.length;
     }
 }

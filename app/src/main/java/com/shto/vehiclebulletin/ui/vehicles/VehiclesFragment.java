@@ -39,22 +39,38 @@ public class VehiclesFragment extends Fragment {
         mRecyclerView.setHasFixedSize(true);
 
         //only testing
-        String[] text1 = new String[Vehicles.vehicles.length];
-        for (int i = 0; i < text1.length; i++) {
-            text1[i] = Vehicles.vehicles[i].getText1();
+        String[] mLicencePlate = new String[Vehicles.vehicles.length];
+        for (int i = 0; i < mLicencePlate.length; i++) {
+            mLicencePlate[i] = Vehicles.vehicles[i].getLicencePlate();
         }
 
-        String[] text2 = new String[Vehicles.vehicles.length];
-        for (int i = 0; i < text2.length; i++) {
-            text2[i] = Vehicles.vehicles[i].getText2();
+        String[] mVehicleModel = new String[Vehicles.vehicles.length];
+        for (int i = 0; i < mVehicleModel.length; i++) {
+            mVehicleModel[i] = Vehicles.vehicles[i].getVehicleModel();
         }
+
+        String[] mRenew = new String[Vehicles.vehicles.length];
+        for (int i = 0; i < mRenew.length; i++) {
+            mRenew[i] = Vehicles.vehicles[i].getRenew();
+        }
+
+        String[] mTotalCost = new String[Vehicles.vehicles.length];
+        for (int i = 0; i < mTotalCost.length; i++) {
+            mTotalCost[i] = Vehicles.vehicles[i].getTotalCost();
+        }
+
+        int[] mVehicleLogo = new int[Vehicles.vehicles.length];
+        for (int i = 0; i < mVehicleLogo.length; i++) {
+            mVehicleLogo[i] = Vehicles.vehicles[i].getVehicleLogo();
+        }
+
 
         // use a linear layout manager
         mLayoutManager = new LinearLayoutManager(getContext());
         mRecyclerView.setLayoutManager(mLayoutManager);
 
         // specify an adapter
-        mAdapter = new VehiclesAdapter(text1, text2);
+        mAdapter = new VehiclesAdapter(mLicencePlate, mVehicleModel, mRenew, mTotalCost, mVehicleLogo);
         mRecyclerView.setAdapter(mAdapter);
 
         // Inflate the layout for this fragment
