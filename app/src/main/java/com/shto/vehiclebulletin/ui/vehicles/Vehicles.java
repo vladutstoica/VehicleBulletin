@@ -5,8 +5,8 @@ public class Vehicles {
     private String text2;
 
     public static final Vehicles[] vehicles = {
-            new Vehicles("PH-20-SVM", "MAZDA 3 2006666666666666666666"),
-            new Vehicles("text3", "text4"),
+            new Vehicles("PH-20-SVM", "MAZDA 3 - 2005"),
+            new Vehicles("PH-19-SVM", "OPEL ASTRA - 2014"),
             new Vehicles("text3", "text4"),
             new Vehicles("text3", "text4"),
             new Vehicles("text3", "text4"),

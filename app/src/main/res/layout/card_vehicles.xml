@@ -18,7 +18,7 @@
             android:id="@+id/vehicle_logo"
             android:layout_width="75dp"
             android:layout_height="0dp"
-            android:background="#C11F1F"
+            android:background="#FFFFFF"
             android:contentDescription="@string/vehicle_logo"
             card_view:layout_constraintBottom_toBottomOf="parent"
             card_view:layout_constraintStart_toStartOf="parent"
@@ -67,7 +67,7 @@
             card_view:srcCompat="@drawable/ic_directions_car_black_24dp" />
 
         <TextView
-            android:id="@+id/textView"
+            android:id="@+id/renew"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
@@ -81,7 +81,7 @@
             card_view:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/textView2"
+            android:id="@+id/total_cost"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
