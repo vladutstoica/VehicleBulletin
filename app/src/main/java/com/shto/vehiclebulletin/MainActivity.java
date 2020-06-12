@@ -23,6 +23,10 @@ public class MainActivity extends AppCompatActivity {
         AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.navigation_home, R.id.navigation_vehicles, R.id.navigation_notifications)
                 .build();
+
+        //FragmentContainerView using findNavController
+        //https://stackoverflow.com/questions/59275009/fragmentcontainerview-using-findnavcontroller
+        //NavController navController = getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment).find
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(navView, navController);

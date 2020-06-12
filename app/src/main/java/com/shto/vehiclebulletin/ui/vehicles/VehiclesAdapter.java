@@ -10,8 +10,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.shto.vehiclebulletin.R;
 
-import org.w3c.dom.Text;
-
 public class VehiclesAdapter extends RecyclerView.Adapter {
 
     // variable who hold vehicles data
@@ -56,9 +54,9 @@ public class VehiclesAdapter extends RecyclerView.Adapter {
         // Set the values inside the given view
         CardView zafuk = (CardView) holder.itemView;
 
-        TextView textView = zafuk.findViewById(R.id.info_text);
+        TextView textView = zafuk.findViewById(R.id.licence_plate);
         textView.setText(text1[position]);
-        TextView textView1 = zafuk.findViewById(R.id.info_text2);
+        TextView textView1 = zafuk.findViewById(R.id.vehicle_model);
         textView1.setText(text2[position]);
 
     }
