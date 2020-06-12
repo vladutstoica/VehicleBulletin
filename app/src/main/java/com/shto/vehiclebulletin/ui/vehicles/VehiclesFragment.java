@@ -1,9 +1,11 @@
 package com.shto.vehiclebulletin.ui.vehicles;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -11,12 +13,17 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.shto.vehiclebulletin.R;
 
 public class VehiclesFragment extends Fragment {
 
     // ViewModel
     private VehiclesViewModel mVehiclesViewModel;
+
+    // FAB
+    private ExtendedFloatingActionButton mFab;
 
     // RecyclerView
     private RecyclerView mRecyclerView;
@@ -26,7 +33,6 @@ public class VehiclesFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         mVehiclesViewModel = new ViewModelProvider(this).get(VehiclesViewModel.class);
-
 
         //testing
         View view = inflater.inflate(R.layout.fragment_vehicles, container, false);
@@ -72,6 +78,17 @@ public class VehiclesFragment extends Fragment {
         // specify an adapter
         mAdapter = new VehiclesAdapter(mLicencePlate, mVehicleModel, mRenew, mTotalCost, mVehicleLogo);
         mRecyclerView.setAdapter(mAdapter);
+
+
+
+        mFab = view.findViewById(R.id.extended_fab);
+        mFab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d("FAB", "working fab");
+                Toast.makeText(getContext(),"working", Toast.LENGTH_SHORT).show();
+            }
+        });
 
         // Inflate the layout for this fragment
         return view;

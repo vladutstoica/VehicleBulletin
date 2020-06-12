@@ -24,9 +24,6 @@ public class Vehicles {
             new Vehicles("PH-20-SVM", "MAZDA 3 - 2005", "test", "2300 LEI", R.drawable.ic_dashboard_black_24dp),
             new Vehicles("PH-20-SVM", "MAZDA 3 - 2005", "test", "2300 LEI", R.drawable.ic_dashboard_black_24dp),
             new Vehicles("PH-20-SVM", "MAZDA 3 - 2005", "test", "2300 LEI", R.drawable.ic_dashboard_black_24dp),
-
-
-
     };
 
     private Vehicles(String mLicencePlate, String mVehicleModel, String mRenew, String mTotalCost, int mVehicleLogo) {
