@@ -14,7 +14,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.shto.vehiclebulletin.R;
 
 public class VehiclesFragment extends Fragment {
@@ -45,29 +44,55 @@ public class VehiclesFragment extends Fragment {
         mRecyclerView.setHasFixedSize(true);
 
         //only testing
-        String[] mLicencePlate = new String[Vehicles.vehicles.length];
+//        String[] mLicencePlate = new String[Vehicles.vehicles.length];
+//        for (int i = 0; i < mLicencePlate.length; i++) {
+//            mLicencePlate[i] = Vehicles.vehicles[i].getLicencePlate();
+//        }
+//
+//        String[] mVehicleModel = new String[Vehicles.vehicles.length];
+//        for (int i = 0; i < mVehicleModel.length; i++) {
+//            mVehicleModel[i] = Vehicles.vehicles[i].getVehicleModel();
+//        }
+//
+//        String[] mRenew = new String[Vehicles.vehicles.length];
+//        for (int i = 0; i < mRenew.length; i++) {
+//            mRenew[i] = Vehicles.vehicles[i].getRenew();
+//        }
+//
+//        String[] mTotalCost = new String[Vehicles.vehicles.length];
+//        for (int i = 0; i < mTotalCost.length; i++) {
+//            mTotalCost[i] = Vehicles.vehicles[i].getTotalCost();
+//        }
+//
+//        int[] mVehicleLogo = new int[Vehicles.vehicles.length];
+//        for (int i = 0; i < mVehicleLogo.length; i++) {
+//            mVehicleLogo[i] = Vehicles.vehicles[i].getVehicleLogo();
+//        }
+
+        //only testing ONLTTTT
+        String[] mLicencePlate = new String[Vehicles.test.size()];
         for (int i = 0; i < mLicencePlate.length; i++) {
-            mLicencePlate[i] = Vehicles.vehicles[i].getLicencePlate();
+            mLicencePlate[i] = Vehicles.test.get(i).getLicencePlate();
         }
 
-        String[] mVehicleModel = new String[Vehicles.vehicles.length];
+        String[] mVehicleModel = new String[Vehicles.test.size()];
         for (int i = 0; i < mVehicleModel.length; i++) {
-            mVehicleModel[i] = Vehicles.vehicles[i].getVehicleModel();
+            mVehicleModel[i] = Vehicles.test.get(i).getVehicleModel();
         }
 
-        String[] mRenew = new String[Vehicles.vehicles.length];
+        String[] mRenew = new String[Vehicles.test.size()];
         for (int i = 0; i < mRenew.length; i++) {
-            mRenew[i] = Vehicles.vehicles[i].getRenew();
+            mRenew[i] = Vehicles.test.get(i).getRenew();
         }
 
-        String[] mTotalCost = new String[Vehicles.vehicles.length];
+        String[] mTotalCost = new String[Vehicles.test.size()];
         for (int i = 0; i < mTotalCost.length; i++) {
-            mTotalCost[i] = Vehicles.vehicles[i].getTotalCost();
+            mTotalCost[i] = Vehicles.test.get(i).getTotalCost();
         }
 
-        int[] mVehicleLogo = new int[Vehicles.vehicles.length];
+        int[] mVehicleLogo = new int[Vehicles.test.size()];
         for (int i = 0; i < mVehicleLogo.length; i++) {
-            mVehicleLogo[i] = Vehicles.vehicles[i].getVehicleLogo();
+            mVehicleLogo[i] = Vehicles.test.get(i).getVehicleLogo();
         }
 
 
@@ -80,13 +105,18 @@ public class VehiclesFragment extends Fragment {
         mRecyclerView.setAdapter(mAdapter);
 
 
-
+        final int test1 = Vehicles.test.size();
+        //working
         mFab = view.findViewById(R.id.extended_fab);
         mFab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Log.d("FAB", "working fab");
-                Toast.makeText(getContext(),"working", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(),"working " + test1, Toast.LENGTH_SHORT).show();
+
+                Vehicles.test.add(new Vehicles("asd","asd","asd","ad", R.drawable.ic_home_black_24dp));
+                mAdapter.notifyItemInserted(test1);
+                //mAdapter.notifyDataSetChanged();
             }
         });
 

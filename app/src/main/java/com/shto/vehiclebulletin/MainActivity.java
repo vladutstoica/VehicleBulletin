@@ -3,6 +3,7 @@ package com.shto.vehiclebulletin;
 import android.os.Bundle;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.shto.vehiclebulletin.ui.vehicles.Vehicles;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
@@ -23,6 +24,8 @@ public class MainActivity extends AppCompatActivity {
         AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.navigation_home, R.id.navigation_vehicles, R.id.navigation_notifications)
                 .build();
+
+        Vehicles.test.add(new Vehicles("ActivityMain","asd","asd","ad", R.drawable.ic_home_black_24dp));
 
         //FragmentContainerView using findNavController
         //https://stackoverflow.com/questions/59275009/fragmentcontainerview-using-findnavcontroller
