@@ -25,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
                 R.id.navigation_home, R.id.navigation_vehicles, R.id.navigation_notifications)
                 .build();
 
-        Vehicles.test.add(new Vehicles("ActivityMain","asd","asd","ad", R.drawable.ic_home_black_24dp));
+        //Vehicles.test.add(new Vehicles("ActivityMain","asd","asd","ad", R.drawable.ic_home_black_24dp));
 
         //FragmentContainerView using findNavController
         //https://stackoverflow.com/questions/59275009/fragmentcontainerview-using-findnavcontroller

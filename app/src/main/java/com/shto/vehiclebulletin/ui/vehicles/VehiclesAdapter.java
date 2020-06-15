@@ -1,5 +1,5 @@
 package com.shto.vehiclebulletin.ui.vehicles;
-
+/*
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -79,5 +79,72 @@ public class VehiclesAdapter extends RecyclerView.Adapter {
         // Return the number of items in the data set
         // The number of the text1 array equals the number of data items in the recycler view
         return mLicencePlate.length;
+    }
+}
+*/
+
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.shto.vehiclebulletin.R;
+
+import java.util.ArrayList;
+
+public class VehiclesAdapter extends RecyclerView.Adapter<VehiclesAdapter.MyViewHolder> {
+
+    private ArrayList<Vehicles> dataSet;
+
+    public class MyViewHolder extends RecyclerView.ViewHolder {
+
+        private TextView mLicencePlateTextView;
+        private TextView mVehicleModelTextView;
+        private TextView mRenewTextView;
+        private TextView mTotalCostTextView;
+        private ImageView mVehicleLogoId;
+
+        public MyViewHolder(@NonNull View itemView) {
+            super(itemView);
+
+            this.mLicencePlateTextView = itemView.findViewById(R.id.licence_plate);
+            this.mVehicleModelTextView = itemView.findViewById(R.id.vehicle_model);
+            this.mRenewTextView = itemView.findViewById(R.id.renew);
+            this.mTotalCostTextView = itemView.findViewById(R.id.total_cost);
+            this.mVehicleLogoId = itemView.findViewById(R.id.vehicle_logo);
+        }
+    }
+
+    public VehiclesAdapter(ArrayList<Vehicles> dataSet) {
+        this.dataSet = dataSet;
+    }
+
+    @NonNull
+    @Override
+    public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+
+        CardView cardView = (CardView) LayoutInflater.from(parent.getContext()).inflate(R.layout.card_vehicles, parent, false);
+
+        return new MyViewHolder(cardView);
+    }
+
+    @Override
+    public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
+
+        holder.mLicencePlateTextView.setText(dataSet.get(position).getLicencePlate());
+        holder.mVehicleModelTextView.setText(dataSet.get(position).getVehicleModel());
+        holder.mRenewTextView.setText(dataSet.get(position).getRenew());
+        holder.mTotalCostTextView.setText(dataSet.get(position).getTotalCost());
+        holder.mVehicleLogoId.setImageResource(dataSet.get(position).getVehicleLogoId());
+    }
+
+    @Override
+    public int getItemCount() {
+        return dataSet.size();
     }
 }
