@@ -1,87 +1,4 @@
 package com.shto.vehiclebulletin.ui.vehicles;
-/*
-import android.view.LayoutInflater;
-import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.TextView;
-
-import androidx.annotation.NonNull;
-import androidx.cardview.widget.CardView;
-import androidx.recyclerview.widget.RecyclerView;
-
-import com.shto.vehiclebulletin.R;
-
-public class VehiclesAdapter extends RecyclerView.Adapter {
-
-    // variable for cardView data
-    private String[] mLicencePlate;
-    private String[] mVehicleModel;
-    private String[] mRenew;
-    private String[] mTotalCost;
-    private int[] mVehicleLogo;
-
-    // Provide a reference to the views used in the recycler view - what data the adapter should work with
-    public static class ViewHolder extends RecyclerView.ViewHolder{
-        // Our recycler view needs to display CardViews, so we specify that out ViewHolder contains CardViews
-        // If you want to display another type of data in the recycler view, you define it here
-        private CardView mCardView;
-
-        // Define the ViewHolder
-        public ViewHolder(@NonNull CardView itemView) {
-            // Call the constructor
-            super(itemView);
-
-            mCardView = itemView;
-        }
-    }
-
-    // pass the data to the adapter using constructor
-    public VehiclesAdapter(String[] mLicencePlate, String[] mVehicleModel, String[] mRenew, String[] mTotalCost, int[] mVehicleLogo) {
-        this.mLicencePlate = mLicencePlate;
-        this.mVehicleModel = mVehicleModel;
-        this.mRenew = mRenew;
-        this.mTotalCost = mTotalCost;
-        this.mVehicleLogo = mVehicleLogo;
-    }
-
-    // Used to create the views
-    @NonNull
-    @Override
-    public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        // Create a new view
-        // Specify what layout to use for the contents of the ViewHolder
-        CardView cardView = (CardView) LayoutInflater.from(parent.getContext()).inflate(R.layout.card_vehicles, parent, false);
-        
-        return new ViewHolder(cardView);
-    }
-
-    // Used to set the values inside the views
-    @Override
-    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-        // Set the values inside the given view
-        CardView zafuk = (CardView) holder.itemView;
-
-        TextView mLicencePlateTextView = zafuk.findViewById(R.id.licence_plate);
-        mLicencePlateTextView.setText(mLicencePlate[position]);
-        TextView mVehicleModelTextView = zafuk.findViewById(R.id.vehicle_model);
-        mVehicleModelTextView.setText(mVehicleModel[position]);
-        TextView mRenewTextView = zafuk.findViewById(R.id.renew);
-        mRenewTextView.setText(mRenew[position]);
-        TextView mTotalCostTextView = zafuk.findViewById(R.id.total_cost);
-        mTotalCostTextView.setText(mTotalCost[position]);
-        ImageView mVehicleLogoImageView = zafuk.findViewById(R.id.vehicle_logo);
-        mVehicleLogoImageView.setImageDrawable(zafuk.getResources().getDrawable(mVehicleLogo[position]));
-    }
-
-    // Used to return the number of items in the data set
-    @Override
-    public int getItemCount() {
-        // Return the number of items in the data set
-        // The number of the text1 array equals the number of data items in the recycler view
-        return mLicencePlate.length;
-    }
-}
-*/
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -97,19 +14,31 @@ import com.shto.vehiclebulletin.R;
 
 import java.util.ArrayList;
 
+//Every adapter has three primary methods:
+// onCreateViewHolder to inflate the item layout and create the holder,
+// onBindViewHolder to set the view attributes based on the data and
+// getItemCount to determine the number of items
 public class VehiclesAdapter extends RecyclerView.Adapter<VehiclesAdapter.MyViewHolder> {
 
+    // Store a member variable for the vehicles data
     private ArrayList<Vehicles> dataSet;
 
-    public class MyViewHolder extends RecyclerView.ViewHolder {
-
+    // Provide a direct reference to each of the views within a data item
+    // Used to cache the views within the item layout for fast access
+    public static class MyViewHolder extends RecyclerView.ViewHolder {
+        // Your holder should contain a member variable
+        // for any view that will be set as you render a row
         private TextView mLicencePlateTextView;
         private TextView mVehicleModelTextView;
         private TextView mRenewTextView;
         private TextView mTotalCostTextView;
         private ImageView mVehicleLogoId;
 
+        // We also create a constructor that accepts the entire item row
+        // and does the view lookups to find each subview
         public MyViewHolder(@NonNull View itemView) {
+            // Stores the itemView in a public final member variable that can be used
+            // to access the context from any ViewHolder instance.
             super(itemView);
 
             this.mLicencePlateTextView = itemView.findViewById(R.id.licence_plate);
@@ -120,22 +49,25 @@ public class VehiclesAdapter extends RecyclerView.Adapter<VehiclesAdapter.MyView
         }
     }
 
+    // Pass the data array into the constructor
     public VehiclesAdapter(ArrayList<Vehicles> dataSet) {
         this.dataSet = dataSet;
     }
 
+    // Usually involves inflating a layout from XML and returning the holder
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-
+        // Inflate the custom layout
         CardView cardView = (CardView) LayoutInflater.from(parent.getContext()).inflate(R.layout.card_vehicles, parent, false);
-
+        // Return a new holder instance
         return new MyViewHolder(cardView);
     }
 
+    // Involves populating data into the item through holder
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-
+        // Set item views based on your views and data model
         holder.mLicencePlateTextView.setText(dataSet.get(position).getLicencePlate());
         holder.mVehicleModelTextView.setText(dataSet.get(position).getVehicleModel());
         holder.mRenewTextView.setText(dataSet.get(position).getRenew());
@@ -143,6 +75,7 @@ public class VehiclesAdapter extends RecyclerView.Adapter<VehiclesAdapter.MyView
         holder.mVehicleLogoId.setImageResource(dataSet.get(position).getVehicleLogoId());
     }
 
+    // Returns the total count of items in the list
     @Override
     public int getItemCount() {
         return dataSet.size();
