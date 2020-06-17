@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "704979875444",
+    "firebase_url": "https://vehicle-bulletin.firebaseio.com",
+    "project_id": "vehicle-bulletin",
+    "storage_bucket": "vehicle-bulletin.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:704979875444:android:4cae84926ab936eddfc321",
+        "android_client_info": {
+          "package_name": "com.shto.vehiclebulletin"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "704979875444-hq4qoltef4as6eepf4m1ljehr8cedouu.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDhk__0cjhUZVpSVwGTa9pd4913io9vqwE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "704979875444-hq4qoltef4as6eepf4m1ljehr8cedouu.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

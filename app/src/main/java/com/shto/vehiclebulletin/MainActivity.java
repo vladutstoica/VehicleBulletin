@@ -17,7 +17,7 @@ import androidx.navigation.ui.NavigationUI;
 
 public class MainActivity extends AppCompatActivity {
 
-    //
+    // Declare an instance of FirebaseAuth
     private FirebaseAuth mAuth;
 
     @Override
@@ -25,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //
+        // Initialize the FirebaseAuth instance
         mAuth = FirebaseAuth.getInstance();
 
         BottomNavigationView navView = findViewById(R.id.nav_view);
@@ -42,16 +42,18 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(navView, navController);
 
-        //
+        // Check to see if the user is currently signed in
         FirebaseAuth.getInstance().signOut();
         FirebaseUser user = mAuth.getCurrentUser();
         if (user != null) {
             // User is signed in
+            navController.navigate(R.id.navigation_vehicles);
         } else {
             // No user is signed in
-            Toast.makeText(this, "no user signed in", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "No user signed in", Toast.LENGTH_SHORT).show();
+
+            // Navigate to Login screen
             navController.navigate(R.id.loginFragment);
-            //getSupportFragmentManager().beginTransaction().replace(R.id.container, LoginFragment.newInstance()).commit();
         }
 
 

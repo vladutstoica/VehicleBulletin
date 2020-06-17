@@ -12,7 +12,8 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.RecyclerView;
+import androidx.fragment.app.FragmentManager;
+import androidx.navigation.Navigation;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -21,18 +22,17 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.shto.vehiclebulletin.R;
 
-import java.util.Objects;
-import java.util.concurrent.Executor;
-
 
 public class LoginFragment extends Fragment {
 
-    private static final String TAG = "login";
-    private FirebaseAuth mAuth;
-
-    //
+    // Members variables
     EditText mEmail;
     EditText mPassword;
+
+    private static final String TAG = "login";
+
+    // Declare an instance of FirebaseAuth
+    private FirebaseAuth mAuth;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -61,18 +61,9 @@ public class LoginFragment extends Fragment {
         return root;
     }
 
-    @Override
-    public void onStart() {
-        super.onStart();
-
-        // Check if user is signed in (non-null) and update UI accordingly.
-        FirebaseUser currentUser = mAuth.getCurrentUser();
-        updateUI(currentUser);
-    }
-
     private void login(String email, String password) {
 
-        Log.d(TAG, "signIn:" + email);
+        Log.d(TAG, "signIn: " + email);
         if (!validateForm()) {
             return;
         }
@@ -124,5 +115,10 @@ public class LoginFragment extends Fragment {
     }
 
     private void updateUI(FirebaseUser user) {
+        if (user != null) {
+            Navigation.findNavController(requireView()).navigate(R.id.action_loginFragment_to_navigation_vehicles);
+        } else {
+
+        }
     }
 }
