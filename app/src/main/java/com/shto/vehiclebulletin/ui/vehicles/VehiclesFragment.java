@@ -18,18 +18,15 @@ import com.shto.vehiclebulletin.R;
 
 
 public class VehiclesFragment extends Fragment {
-    private RecyclerView mRecyclerView;
-    private RecyclerView.Adapter mAdapter;
-    private RecyclerView.LayoutManager mLayoutManager;
-
-    private ExtendedFloatingActionButton mFab;
+    // Use this is any bug hit: private RecyclerView.Adapter mAdapter;
+    private VehiclesAdapter mAdapter;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_vehicles, container, false);
-        mRecyclerView = view.findViewById(R.id.vehicles_recycler_view);
+        RecyclerView recyclerView = view.findViewById(R.id.vehicles_recycler_view);
         // TODO: make below like work
         //mRecyclerView = inflater.inflate(R.layout.fragment_vehicles, container, false);
 
@@ -37,26 +34,31 @@ public class VehiclesFragment extends Fragment {
 
         // use this setting to improve performance if you know that changes
         // in content do not change the layout size of the RecyclerView
-        mRecyclerView.setHasFixedSize(true);
+        recyclerView.setHasFixedSize(true);
 
         // Use a linear layout manager
-        mLayoutManager = new LinearLayoutManager(mRecyclerView.getContext());
-        mRecyclerView.setLayoutManager(mLayoutManager);
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(recyclerView.getContext());
+        recyclerView.setLayoutManager(layoutManager);
 
         // Specify an adapter
         mAdapter = new VehiclesAdapter(Vehicles.mVehiclesData);
-        mRecyclerView.setAdapter(mAdapter);
+        recyclerView.setAdapter(mAdapter);
 
-        mFab = view.findViewById(R.id.extended_fab);
-        mFab.setOnClickListener(new View.OnClickListener() {
+        ExtendedFloatingActionButton fab = view.findViewById(R.id.extended_fab);
+        fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Log.d("FAB", "working fab");
                 Toast.makeText(getContext(),"working ", Toast.LENGTH_SHORT).show();
+                // testxr
+                int curSize = mAdapter.getItemCount();
 
-                Vehicles.mVehiclesData.add(new Vehicles("ActivityMain","asd","asd","ad", R.drawable.ic_home_black_24dp));
+                Vehicles.mVehiclesData.add(new Vehicles("PH-20-SVM","MAZDA 3 - 2006","last act","4 000 EURO", R.drawable.ic_home_black_24dp));
                 Toast.makeText(getContext(),"array size " + Vehicles.mVehiclesData.size(), Toast.LENGTH_SHORT).show();
-                mAdapter.notifyDataSetChanged();
+
+                // testxr
+                mAdapter.notifyItemInserted(curSize + 1);
+                //mAdapter.notifyDataSetChanged();
             }
         });
 
