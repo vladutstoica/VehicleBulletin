@@ -1,8 +1,12 @@
 package com.shto.vehiclebulletin;
 
 import android.os.Bundle;
+import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.shto.vehiclebulletin.ui.login.LoginFragment;
 import com.shto.vehiclebulletin.ui.vehicles.Vehicles;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,11 +17,17 @@ import androidx.navigation.ui.NavigationUI;
 
 public class MainActivity extends AppCompatActivity {
 
+    //
+    private FirebaseAuth mAuth;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_main);
+
+        //
+        mAuth = FirebaseAuth.getInstance();
+
         BottomNavigationView navView = findViewById(R.id.nav_view);
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
@@ -31,6 +41,35 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(navView, navController);
-    }
 
+        //
+        FirebaseAuth.getInstance().signOut();
+        FirebaseUser user = mAuth.getCurrentUser();
+        if (user != null) {
+            // User is signed in
+        } else {
+            // No user is signed in
+            Toast.makeText(this, "no user signed in", Toast.LENGTH_SHORT).show();
+            navController.navigate(R.id.loginFragment);
+            //getSupportFragmentManager().beginTransaction().replace(R.id.container, LoginFragment.newInstance()).commit();
+        }
+
+
+    }
+/*
+    @Override
+    public void onStart() {
+        super.onStart();
+        // Check if user is signed in (non-null) and update UI accordingly.
+        FirebaseUser user = mAuth.getCurrentUser();
+        if (user != null) {
+            // User is signed in
+        } else {
+            // No user is signed in
+            Toast.makeText(this, "no user signed in", Toast.LENGTH_SHORT).show();
+            Navigation.findNavController(this, R.id.loginFragment);
+            //navController.navigate(R.id.loginFragment);
+        }
+    }
+*/
 }
