@@ -1,6 +1,7 @@
 package com.shto.vehiclebulletin.ui.login;
 
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,11 +13,11 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
 import androidx.navigation.Navigation;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -58,6 +59,10 @@ public class LoginFragment extends Fragment {
             }
         });
 
+        // TODO: set in on onCreate or finish it
+        BottomNavigationView navView = getActivity().findViewById(R.id.nav_view);
+        navView.setVisibility(View.GONE);
+
         return root;
     }
 
@@ -93,23 +98,21 @@ public class LoginFragment extends Fragment {
     private boolean validateForm() {
         boolean valid = true;
 
-        /*
-        String email = mBinding.fieldEmail.getText().toString();
+        String email = mEmail.getText().toString();
         if (TextUtils.isEmpty(email)) {
-            mBinding.fieldEmail.setError("Required.");
+            mEmail.setError("Required.");
             valid = false;
         } else {
-            mBinding.fieldEmail.setError(null);
+            mEmail.setError(null);
         }
 
-        String password = mBinding.fieldPassword.getText().toString();
+        String password = mPassword.getText().toString();
         if (TextUtils.isEmpty(password)) {
-            mBinding.fieldPassword.setError("Required.");
+            mPassword.setError("Required.");
             valid = false;
         } else {
-            mBinding.fieldPassword.setError(null);
+            mPassword.setError(null);
         }
-        */
 
         return valid;
     }
@@ -117,8 +120,11 @@ public class LoginFragment extends Fragment {
     private void updateUI(FirebaseUser user) {
         if (user != null) {
             Navigation.findNavController(requireView()).navigate(R.id.action_loginFragment_to_navigation_vehicles);
+            BottomNavigationView navView = getActivity().findViewById(R.id.nav_view);
+            navView.setVisibility(View.VISIBLE);
         } else {
-
+            mEmail.setText(null);
+            mPassword.setText(null);
         }
     }
 }

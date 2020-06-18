@@ -1,6 +1,7 @@
 package com.shto.vehiclebulletin;
 
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -39,15 +40,21 @@ public class MainActivity extends AppCompatActivity {
         //https://stackoverflow.com/questions/59275009/fragmentcontainerview-using-findnavcontroller
         //NavController navController = getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment).find
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
-        NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
+
+        // TODO: uncomment if actionbar enabled
+        //NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(navView, navController);
+        
 
         // Check to see if the user is currently signed in
-        FirebaseAuth.getInstance().signOut();
+        // TODO: remove the line below
+        //FirebaseAuth.getInstance().signOut();
+
         FirebaseUser user = mAuth.getCurrentUser();
         if (user != null) {
             // User is signed in
             navController.navigate(R.id.navigation_vehicles);
+            navView.setVisibility(View.VISIBLE);
         } else {
             // No user is signed in
             Toast.makeText(this, "No user signed in", Toast.LENGTH_SHORT).show();
@@ -55,23 +62,5 @@ public class MainActivity extends AppCompatActivity {
             // Navigate to Login screen
             navController.navigate(R.id.loginFragment);
         }
-
-
     }
-/*
-    @Override
-    public void onStart() {
-        super.onStart();
-        // Check if user is signed in (non-null) and update UI accordingly.
-        FirebaseUser user = mAuth.getCurrentUser();
-        if (user != null) {
-            // User is signed in
-        } else {
-            // No user is signed in
-            Toast.makeText(this, "no user signed in", Toast.LENGTH_SHORT).show();
-            Navigation.findNavController(this, R.id.loginFragment);
-            //navController.navigate(R.id.loginFragment);
-        }
-    }
-*/
 }

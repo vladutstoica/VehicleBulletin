@@ -1,4 +1,4 @@
-package com.shto.vehiclebulletin.ui.notifications;
+package com.shto.vehiclebulletin.ui.profile;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
