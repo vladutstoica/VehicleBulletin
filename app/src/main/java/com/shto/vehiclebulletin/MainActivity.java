@@ -1,20 +1,17 @@
 package com.shto.vehiclebulletin;
 
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Toast;
-
-import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.shto.vehiclebulletin.ui.login.LoginFragment;
-import com.shto.vehiclebulletin.ui.vehicles.Vehicles;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
+
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -44,21 +41,15 @@ public class MainActivity extends AppCompatActivity {
         // TODO: uncomment if actionbar enabled
         //NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(navView, navController);
-        
 
         // Check to see if the user is currently signed in
-        // TODO: remove the line below
-        //FirebaseAuth.getInstance().signOut();
-
         FirebaseUser user = mAuth.getCurrentUser();
         if (user != null) {
             // User is signed in
             navController.navigate(R.id.navigation_vehicles);
-            navView.setVisibility(View.VISIBLE);
         } else {
             // No user is signed in
             Toast.makeText(this, "No user signed in", Toast.LENGTH_SHORT).show();
-
             // Navigate to Login screen
             navController.navigate(R.id.loginFragment);
         }

@@ -10,9 +10,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.navigation.Navigation;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -23,8 +25,11 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.shto.vehiclebulletin.R;
 
-
 public class LoginFragment extends Fragment {
+
+    // TODO: unfocus when touch outside the EditText
+    // TODO: unfocus on login failed
+    // TODO: remove loginfragment from backstack so when you successfully login and press back, user wont go back to login fragment
 
     // Members variables
     EditText mEmail;
@@ -41,6 +46,19 @@ public class LoginFragment extends Fragment {
 
         // Initialize the FirebaseAuth instance
         mAuth = FirebaseAuth.getInstance();
+
+        /* This callback will only be called when LoginFragment is at least Started.
+        https://developer.android.com/guide/navigation/navigation-custom-back
+        Prevent the back button to navigate to navigation start page (navigation_vehicles)*/
+        OnBackPressedCallback callback = new OnBackPressedCallback(true /* enabled by default */) {
+            @Override
+            public void handleOnBackPressed() {
+                // Handle the back button event
+                Toast.makeText(getContext(), "backbutton pressed.", Toast.LENGTH_SHORT).show();
+                requireActivity().finish();
+            }
+        };
+        requireActivity().getOnBackPressedDispatcher().addCallback(this, callback);
     }
 
     @Nullable
@@ -51,6 +69,7 @@ public class LoginFragment extends Fragment {
         mEmail = root.findViewById(R.id.email_input);
         mPassword = root.findViewById(R.id.password_input);
 
+        // LOGIN button
         Button loginButton = root.findViewById(R.id.login_button);
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -59,12 +78,24 @@ public class LoginFragment extends Fragment {
             }
         });
 
+        // GoToRegister button
+        Button goToRegister = root.findViewById(R.id.register_goto_button);
+        goToRegister.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //Navigation.findNavController(requireView()).navigate(R.id.action_loginFragment_to_navigation_vehicles);
+                Navigation.findNavController(requireView()).navigate(R.id.registerFragment);
+            }
+        });
+
+
         // TODO: set in on onCreate or finish it
-        BottomNavigationView navView = getActivity().findViewById(R.id.nav_view);
+        BottomNavigationView navView = requireActivity().findViewById(R.id.nav_view);
         navView.setVisibility(View.GONE);
 
         return root;
     }
+
 
     private void login(String email, String password) {
 
@@ -119,8 +150,11 @@ public class LoginFragment extends Fragment {
 
     private void updateUI(FirebaseUser user) {
         if (user != null) {
+            requireActivity().getSupportFragmentManager().popBackStack(R.id.loginFragment, FragmentManager.POP_BACK_STACK_INCLUSIVE);
             Navigation.findNavController(requireView()).navigate(R.id.action_loginFragment_to_navigation_vehicles);
-            BottomNavigationView navView = getActivity().findViewById(R.id.nav_view);
+
+            // Show Bottom Navigation Bar
+            BottomNavigationView navView = requireActivity().findViewById(R.id.nav_view);
             navView.setVisibility(View.VISIBLE);
         } else {
             mEmail.setText(null);

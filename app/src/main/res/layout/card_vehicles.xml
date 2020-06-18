@@ -38,8 +38,8 @@
             android:textAllCaps="true"
             android:textSize="24sp"
             android:textStyle="bold"
-            card_view:layout_constraintBottom_toTopOf="@+id/middle_horizontal_guideline"
-            card_view:layout_constraintEnd_toStartOf="@+id/middle_vertical_guideline"
+            card_view:layout_constraintBottom_toTopOf="@+id/horizontal_middle_guideline"
+            card_view:layout_constraintEnd_toStartOf="@+id/vertical_middle_guideline"
             card_view:layout_constraintStart_toEndOf="@+id/vehicle_logo"
             card_view:layout_constraintTop_toTopOf="parent" />
 
@@ -53,9 +53,9 @@
             android:layout_marginRight="8dp"
             android:gravity="center"
             card_view:layout_constraintBottom_toBottomOf="parent"
-            card_view:layout_constraintEnd_toStartOf="@+id/middle_vertical_guideline"
+            card_view:layout_constraintEnd_toStartOf="@+id/vertical_middle_guideline"
             card_view:layout_constraintStart_toEndOf="@+id/vehicle_logo"
-            card_view:layout_constraintTop_toTopOf="@+id/middle_horizontal_guideline" />
+            card_view:layout_constraintTop_toTopOf="@+id/horizontal_middle_guideline" />
 
         <ImageView
             android:id="@+id/vehicle_type"
@@ -64,7 +64,7 @@
             android:contentDescription="@string/vehicle_type"
             card_view:layout_constraintBottom_toBottomOf="parent"
             card_view:layout_constraintEnd_toEndOf="parent"
-            card_view:layout_constraintTop_toTopOf="@+id/middle_horizontal_guideline"
+            card_view:layout_constraintTop_toTopOf="@+id/horizontal_middle_guideline"
             card_view:srcCompat="@drawable/ic_directions_car_black_24dp" />
 
         <TextView
@@ -76,9 +76,9 @@
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
             android:gravity="center"
-            card_view:layout_constraintBottom_toTopOf="@+id/middle_horizontal_guideline"
+            card_view:layout_constraintBottom_toTopOf="@+id/horizontal_middle_guideline"
             card_view:layout_constraintEnd_toEndOf="parent"
-            card_view:layout_constraintStart_toStartOf="@+id/middle_vertical_guideline"
+            card_view:layout_constraintStart_toStartOf="@+id/vertical_middle_guideline"
             card_view:layout_constraintTop_toTopOf="parent" />
 
         <TextView
@@ -92,18 +92,18 @@
             android:gravity="center"
             card_view:layout_constraintBottom_toBottomOf="parent"
             card_view:layout_constraintEnd_toStartOf="@+id/vehicle_type"
-            card_view:layout_constraintStart_toStartOf="@+id/middle_vertical_guideline"
-            card_view:layout_constraintTop_toTopOf="@+id/middle_horizontal_guideline" />
+            card_view:layout_constraintStart_toStartOf="@+id/vertical_middle_guideline"
+            card_view:layout_constraintTop_toTopOf="@+id/horizontal_middle_guideline" />
 
         <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/middle_vertical_guideline"
+            android:id="@+id/vertical_middle_guideline"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             card_view:layout_constraintGuide_percent="0.6" />
 
         <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/middle_horizontal_guideline"
+            android:id="@+id/horizontal_middle_guideline"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"

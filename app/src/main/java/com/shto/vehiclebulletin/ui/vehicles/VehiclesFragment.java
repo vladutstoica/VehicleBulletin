@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -20,6 +21,24 @@ import com.shto.vehiclebulletin.R;
 public class VehiclesFragment extends Fragment {
     // Use this is any bug hit: private RecyclerView.Adapter mAdapter;
     private VehiclesAdapter mAdapter;
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        /* This callback will only be called when LoginFragment is at least Started.
+        https://developer.android.com/guide/navigation/navigation-custom-back
+        Prevent the back button to navigate to login page (loginFragment)*/
+        OnBackPressedCallback callback = new OnBackPressedCallback(true /* enabled by default */) {
+            @Override
+            public void handleOnBackPressed() {
+                // Handle the back button event
+                Toast.makeText(getContext(), "backbutton pressed.", Toast.LENGTH_SHORT).show();
+                requireActivity().finish();
+            }
+        };
+        requireActivity().getOnBackPressedDispatcher().addCallback(this, callback);
+    }
 
     @Nullable
     @Override
