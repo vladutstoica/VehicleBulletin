@@ -14,7 +14,6 @@ import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
 import androidx.navigation.Navigation;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -66,8 +65,8 @@ public class LoginFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_login, container, false);
 
-        mEmail = root.findViewById(R.id.email_input);
-        mPassword = root.findViewById(R.id.password_input);
+        mEmail = root.findViewById(R.id.email_create_input);
+        mPassword = root.findViewById(R.id.password_create_input);
 
         // LOGIN button
         Button loginButton = root.findViewById(R.id.login_button);
@@ -99,7 +98,7 @@ public class LoginFragment extends Fragment {
 
     private void login(String email, String password) {
 
-        Log.d(TAG, "signIn: " + email);
+        Log.d(TAG, "login: " + email);
         if (!validateForm()) {
             return;
         }
@@ -150,7 +149,6 @@ public class LoginFragment extends Fragment {
 
     private void updateUI(FirebaseUser user) {
         if (user != null) {
-            requireActivity().getSupportFragmentManager().popBackStack(R.id.loginFragment, FragmentManager.POP_BACK_STACK_INCLUSIVE);
             Navigation.findNavController(requireView()).navigate(R.id.action_loginFragment_to_navigation_vehicles);
 
             // Show Bottom Navigation Bar
