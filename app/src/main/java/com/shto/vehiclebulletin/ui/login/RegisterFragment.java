@@ -26,6 +26,9 @@ import com.shto.vehiclebulletin.R;
 
 public class RegisterFragment extends Fragment {
 
+    // TODO: verification email send and take back to app after verified completed
+    // TODO: log out user if his account is deleted from another device
+
     private static final String TAG = "register";
     // Members variables
     EditText mEmail;
@@ -132,6 +135,15 @@ public class RegisterFragment extends Fragment {
 
     private void updateUI(FirebaseUser user) {
         if (user != null) {
+            user.sendEmailVerification().addOnCompleteListener(new OnCompleteListener<Void>() {
+                @Override
+                public void onComplete(@NonNull Task<Void> task) {
+                    Log.d(TAG, "Email sent.");
+                    Toast.makeText(getContext(), "Email sent.",
+                            Toast.LENGTH_SHORT).show();
+                }
+            });
+
             Navigation.findNavController(requireView()).navigate(R.id.action_registerFragment_to_navigation_vehicles);
 
             // Show Bottom Navigation Bar

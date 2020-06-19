@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -15,6 +16,7 @@ import androidx.lifecycle.ViewModelProviders;
 import androidx.navigation.Navigation;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.shto.vehiclebulletin.R;
 
 public class ProfileFragment extends Fragment {
@@ -44,6 +46,17 @@ public class ProfileFragment extends Fragment {
 
             }
         });
+
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        if (user != null) {
+            boolean emailVerified = user.isEmailVerified();
+            if (emailVerified) {
+                Toast.makeText(getContext(), "email verified", Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(getContext(), "email unverified", Toast.LENGTH_SHORT).show();
+            }
+        }
+
 
         return root;
     }
