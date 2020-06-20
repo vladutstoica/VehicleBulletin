@@ -15,22 +15,20 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class MainActivity extends AppCompatActivity {
 
-    // Declare an instance of FirebaseAuth
-    private FirebaseAuth mAuth;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         // Initialize the FirebaseAuth instance
-        mAuth = FirebaseAuth.getInstance();
+        // Declare an instance of FirebaseAuth
+        FirebaseAuth auth = FirebaseAuth.getInstance();
 
         BottomNavigationView navView = findViewById(R.id.nav_view);
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.navigation_home, R.id.navigation_vehicles, R.id.navigation_notifications)
+                R.id.navigation_home, R.id.navigation_vehicles, R.id.navigation_profile)
                 .build();
 
         //FragmentContainerView using findNavController
@@ -43,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupWithNavController(navView, navController);
 
         // Check to see if the user is currently signed in
-        FirebaseUser user = mAuth.getCurrentUser();
+        FirebaseUser user = auth.getCurrentUser();
         if (user != null) {
             // User is signed in
             navController.navigate(R.id.navigation_vehicles);

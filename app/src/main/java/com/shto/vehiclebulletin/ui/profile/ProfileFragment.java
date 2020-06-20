@@ -21,15 +21,15 @@ import com.shto.vehiclebulletin.R;
 
 public class ProfileFragment extends Fragment {
 
-    private NotificationsViewModel notificationsViewModel;
+    private ProfileViewModel mProfileViewModel;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        notificationsViewModel =
-                ViewModelProviders.of(this).get(NotificationsViewModel.class);
+        mProfileViewModel =
+                ViewModelProviders.of(this).get(ProfileViewModel.class);
         View root = inflater.inflate(R.layout.fragment_profile, container, false);
         final TextView textView = root.findViewById(R.id.text_notifications);
-        notificationsViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
+        mProfileViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
                 textView.setText(s);
@@ -51,9 +51,9 @@ public class ProfileFragment extends Fragment {
         if (user != null) {
             boolean emailVerified = user.isEmailVerified();
             if (emailVerified) {
-                Toast.makeText(getContext(), "email verified", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "email verified" + user.getUid(), Toast.LENGTH_SHORT).show();
             } else {
-                Toast.makeText(getContext(), "email unverified", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "email unverified" + user.getUid(), Toast.LENGTH_SHORT).show();
             }
         }
 

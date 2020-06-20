@@ -58,14 +58,14 @@ public class RegisterFragment extends Fragment {
         registerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                register(mEmail.getText().toString(), mPassword.getText().toString(), mRecheckPassword.getText().toString());
+                register(mEmail.getText().toString(), mPassword.getText().toString());
             }
         });
 
         return root;
     }
 
-    private void register(String email, String password, String recheckPassword) {
+    private void register(String email, String password) {
 
         Log.d(TAG, "register: " + email);
         if (!validateForm()) {
@@ -122,8 +122,8 @@ public class RegisterFragment extends Fragment {
         }
 
         if (!password.equals(recheckPassword)) {
-            mPassword.setError("nu sunt asemanatoare");
-            mRecheckPassword.setError("nu sunt asemanatoare");
+            mPassword.setError("Passwords do not match.");
+            mRecheckPassword.setError("Passwords do not match.");
             valid = false;
         } else {
             mPassword.setError(null);
