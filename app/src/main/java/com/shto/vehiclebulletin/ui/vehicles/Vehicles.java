@@ -45,26 +45,4 @@ public class Vehicles {
     public int getVehicleLogoId() {
         return mVehicleLogoId;
     }
-
-    //TODO testing database purpose
-
-    public void setLicencePlate(String licencePlate) {
-        mLicencePlate = licencePlate;
-    }
-
-    public void setVehicleModel(String vehicleModel) {
-        mVehicleModel = vehicleModel;
-    }
-
-    public void setRenew(String renew) {
-        mRenew = renew;
-    }
-
-    public void setTotalCost(String totalCost) {
-        mTotalCost = totalCost;
-    }
-
-    public void setVehicleLogoId(int vehicleLogoId) {
-        mVehicleLogoId = vehicleLogoId;
-    }
 }
