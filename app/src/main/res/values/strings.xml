@@ -16,6 +16,7 @@
     <string name="prompt_login">LOGIN</string>
     <string name="prompt_register">REGISTER</string>
     <string name="prompt_create_account">CREATE ACCOUNT</string>
+    <string name="prompt_sign_out">SIGN OUT</string>
 
     <string name="action_sign_in">Sign in or register</string>
     <string name="action_sign_in_short">Sign in</string>
