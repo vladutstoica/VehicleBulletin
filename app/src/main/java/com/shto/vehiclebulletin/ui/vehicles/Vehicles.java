@@ -8,10 +8,11 @@ public class Vehicles {
     private String mVehicleModel;
     private String mRenew;
     private String mTotalCost;
-    private int mVehicleLogoId;
+    private int mBrandLogoId;
 
     public Vehicles() {
         // Default constructor required for calls to DataSnapshot.getValue(User.class)
+
     }
 
     public Vehicles(String mLicencePlate,
@@ -23,7 +24,7 @@ public class Vehicles {
         this.mVehicleModel = mVehicleModel;
         this.mRenew = mRenew;
         this.mTotalCost = mTotalCost;
-        this.mVehicleLogoId = mVehicleLogo;
+        this.mBrandLogoId = mVehicleLogo;
     }
 
     public String getLicencePlate() {
@@ -42,7 +43,7 @@ public class Vehicles {
         return mTotalCost;
     }
 
-    public int getVehicleLogoId() {
-        return mVehicleLogoId;
+    public int getBrandLogoId() {
+        return mBrandLogoId;
     }
 }

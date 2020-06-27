@@ -16,11 +16,11 @@
         android:layout_height="match_parent">
 
         <ImageView
-            android:id="@+id/vehicle_logo"
+            android:id="@+id/brand_logo"
             android:layout_width="75dp"
             android:layout_height="0dp"
             android:background="#FFFFFF"
-            android:contentDescription="@string/vehicle_logo"
+            android:contentDescription="@string/brand_logo"
             card_view:layout_constraintBottom_toBottomOf="parent"
             card_view:layout_constraintStart_toStartOf="parent"
             card_view:layout_constraintTop_toTopOf="parent"
@@ -40,7 +40,7 @@
             android:textStyle="bold"
             card_view:layout_constraintBottom_toTopOf="@+id/horizontal_middle_guideline"
             card_view:layout_constraintEnd_toStartOf="@+id/vertical_middle_guideline"
-            card_view:layout_constraintStart_toEndOf="@+id/vehicle_logo"
+            card_view:layout_constraintStart_toEndOf="@+id/brand_logo"
             card_view:layout_constraintTop_toTopOf="parent" />
 
         <TextView
@@ -54,7 +54,7 @@
             android:gravity="center"
             card_view:layout_constraintBottom_toBottomOf="parent"
             card_view:layout_constraintEnd_toStartOf="@+id/vertical_middle_guideline"
-            card_view:layout_constraintStart_toEndOf="@+id/vehicle_logo"
+            card_view:layout_constraintStart_toEndOf="@+id/brand_logo"
             card_view:layout_constraintTop_toTopOf="@+id/horizontal_middle_guideline" />
 
         <ImageView
@@ -65,7 +65,7 @@
             card_view:layout_constraintBottom_toBottomOf="parent"
             card_view:layout_constraintEnd_toEndOf="parent"
             card_view:layout_constraintTop_toTopOf="@+id/horizontal_middle_guideline"
-            card_view:srcCompat="@drawable/ic_directions_car_black_24dp" />
+            card_view:srcCompat="@drawable/ic_baseline_directions_car_24" />
 
         <TextView
             android:id="@+id/renew"

@@ -10,6 +10,7 @@ import android.widget.Toast;
 import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -70,6 +71,11 @@ public class VehiclesFragment extends Fragment {
             public void onClick(View v) {
                 Log.d(TAG, "working fab");
                 Toast.makeText(getContext(), "working ", Toast.LENGTH_SHORT).show();
+
+                // When you want to show your dialog, create an instance of your DialogFragment
+                // and call show(), passing the FragmentManager and a tag name for the dialog fragment.
+                DialogFragment newFragment = new AddVehicleDialogFragment();
+                newFragment.show(getParentFragmentManager(), "Add Vehicle Dialog");
 
                 int curSize = mAdapter.getItemCount();
 

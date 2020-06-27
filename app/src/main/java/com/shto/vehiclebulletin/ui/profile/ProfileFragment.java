@@ -44,7 +44,7 @@ public class ProfileFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 FirebaseAuth.getInstance().signOut();
-                Navigation.findNavController(requireView()).navigate(R.id.loginFragment);
+                Navigation.findNavController(requireView()).navigate(R.id.action_navigation_profile_to_loginFragment);
 
             }
         });

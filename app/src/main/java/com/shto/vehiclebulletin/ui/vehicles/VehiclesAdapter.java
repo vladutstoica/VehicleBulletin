@@ -23,30 +23,15 @@ public class VehiclesAdapter extends RecyclerView.Adapter<VehiclesAdapter.MyView
     // Store a member variable for the vehicles data
     private ArrayList<Vehicles> dataSet;
 
-    // Provide a direct reference to each of the views within a data item
-    // Used to cache the views within the item layout for fast access
-    public static class MyViewHolder extends RecyclerView.ViewHolder {
-        // Your holder should contain a member variable
-        // for any view that will be set as you render a row
-        private TextView mLicencePlateTextView;
-        private TextView mVehicleModelTextView;
-        private TextView mRenewTextView;
-        private TextView mTotalCostTextView;
-        private ImageView mVehicleLogoId;
-
-        // We also create a constructor that accepts the entire item row
-        // and does the view lookups to find each subview
-        public MyViewHolder(@NonNull View itemView) {
-            // Stores the itemView in a public final member variable that can be used
-            // to access the context from any ViewHolder instance.
-            super(itemView);
-
-            this.mLicencePlateTextView = itemView.findViewById(R.id.licence_plate);
-            this.mVehicleModelTextView = itemView.findViewById(R.id.vehicle_model);
-            this.mRenewTextView = itemView.findViewById(R.id.renew);
-            this.mTotalCostTextView = itemView.findViewById(R.id.total_cost);
-            this.mVehicleLogoId = itemView.findViewById(R.id.vehicle_logo);
-        }
+    // Involves populating data into the item through holder
+    @Override
+    public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
+        // Set item views based on your views and data model
+        holder.mLicencePlateTextView.setText(dataSet.get(position).getLicencePlate());
+        holder.mVehicleModelTextView.setText(dataSet.get(position).getVehicleModel());
+        holder.mRenewTextView.setText(dataSet.get(position).getRenew());
+        holder.mTotalCostTextView.setText(dataSet.get(position).getTotalCost());
+        holder.mBrandLogoId.setImageResource(dataSet.get(position).getBrandLogoId());
     }
 
     // Pass the data array into the constructor
@@ -64,15 +49,30 @@ public class VehiclesAdapter extends RecyclerView.Adapter<VehiclesAdapter.MyView
         return new MyViewHolder(cardView);
     }
 
-    // Involves populating data into the item through holder
-    @Override
-    public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        // Set item views based on your views and data model
-        holder.mLicencePlateTextView.setText(dataSet.get(position).getLicencePlate());
-        holder.mVehicleModelTextView.setText(dataSet.get(position).getVehicleModel());
-        holder.mRenewTextView.setText(dataSet.get(position).getRenew());
-        holder.mTotalCostTextView.setText(dataSet.get(position).getTotalCost());
-        holder.mVehicleLogoId.setImageResource(dataSet.get(position).getVehicleLogoId());
+    // Provide a direct reference to each of the views within a data item
+    // Used to cache the views within the item layout for fast access
+    public static class MyViewHolder extends RecyclerView.ViewHolder {
+        // Your holder should contain a member variable
+        // for any view that will be set as you render a row
+        private TextView mLicencePlateTextView;
+        private TextView mVehicleModelTextView;
+        private TextView mRenewTextView;
+        private TextView mTotalCostTextView;
+        private ImageView mBrandLogoId;
+
+        // We also create a constructor that accepts the entire item row
+        // and does the view lookups to find each subview
+        public MyViewHolder(@NonNull View itemView) {
+            // Stores the itemView in a public final member variable that can be used
+            // to access the context from any ViewHolder instance.
+            super(itemView);
+
+            this.mLicencePlateTextView = itemView.findViewById(R.id.licence_plate);
+            this.mVehicleModelTextView = itemView.findViewById(R.id.vehicle_model);
+            this.mRenewTextView = itemView.findViewById(R.id.renew);
+            this.mTotalCostTextView = itemView.findViewById(R.id.total_cost);
+            this.mBrandLogoId = itemView.findViewById(R.id.brand_logo);
+        }
     }
 
     // Returns the total count of items in the list
