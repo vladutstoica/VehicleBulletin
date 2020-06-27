@@ -3,9 +3,7 @@ package com.shto.vehiclebulletin.ui.vehicles;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 
@@ -16,13 +14,29 @@ import androidx.fragment.app.DialogFragment;
 import com.shto.vehiclebulletin.R;
 
 public class AddVehicleDialogFragment extends DialogFragment {
+
+    private static final String[] COUNTRIES = new String[]{
+            "Belgium", "France", "Italy", "Germany", "Spain"
+    };
+
     @NonNull
     @Override
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
+        View view = getLayoutInflater().inflate(R.layout.vehicle_dialog, null);
+
         // Use the Builder class for convenient dialog construction
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
 
-        builder.setView(getLayoutInflater().inflate(R.layout.vehicle_dialog, null));
+        builder.setView(view);
+
+        // Get a reference to the AutoCompleteTextView in the layout
+        AutoCompleteTextView autoTextView = view.findViewById(R.id.brandAutoCompleteTextView);
+        // Get the string array
+        // Create the adapter and set it to the AutoCompleteTextView
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(requireActivity(), android.R.layout.simple_dropdown_item_1line, COUNTRIES);
+
+        autoTextView.setAdapter(adapter);
+
 
         // Add action buttons
 //           .setPositiveButton("add", new DialogInterface.OnClickListener() {
@@ -38,36 +52,5 @@ public class AddVehicleDialogFragment extends DialogFragment {
 //                });
 
         return builder.create();
-    }
-
-    /**
-     * The system calls this to get the DialogFragment's layout, regardless
-     * of whether it's being displayed as a dialog or an embedded fragment.
-     */
-    @Nullable
-    @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        // Inflate the layout to use as dialog or embedded fragment
-
-        final View root = inflater.inflate(R.layout.vehicle_dialog, container, false);
-
-        return root;
-    }
-
-    @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-
-        String[] COUNTRIES = new String[]{"Item 1", "Item 2", "Item 3", "Item 4"};
-
-        ArrayAdapter<String> adapter =
-                new ArrayAdapter<>(
-                        getContext(),
-                        R.layout.dropdown_item,
-                        COUNTRIES);
-
-        AutoCompleteTextView editTextFilledExposedDropdown =
-                view.findViewById(R.id.brandAutoCompleteTextView);
-        editTextFilledExposedDropdown.setAdapter(adapter);
     }
 }
