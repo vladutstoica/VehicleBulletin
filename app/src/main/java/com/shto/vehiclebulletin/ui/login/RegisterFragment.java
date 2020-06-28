@@ -36,11 +36,11 @@ public class RegisterFragment extends Fragment {
     // TODO: log out user if his account is deleted from another device
 
     private static final String TAG = "register";
+    // Members variables
+    EditText mName;
     EditText mEmail;
     EditText mPassword;
     EditText mRecheckPassword;
-    // Members variables
-    EditText mName;
     // Declare an instance of FirebaseAuth
     private FirebaseAuth mAuth;
     private FirebaseFirestore db;
@@ -181,13 +181,13 @@ public class RegisterFragment extends Fragment {
     }
 
     private void updateDB(FirebaseUser user) {
-        Map<String, Object> name = new HashMap<>();
-        name.put("name", mName.getText().toString());
+        Map<String, Object> userName = new HashMap<>();
+        userName.put("name", mName.getText().toString());
 
         if (user != null) {
             db.collection("users")
                     .document(user.getUid())
-                    .set(name)
+                    .set(userName)
                     .addOnSuccessListener(new OnSuccessListener<Void>() {
                         @Override
                         public void onSuccess(Void aVoid) {
