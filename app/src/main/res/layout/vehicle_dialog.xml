@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_centerInParent="false">
+    android:layout_centerInParent="false"
+    android:background="#F3C4C4">
 
     <ImageView
         android:id="@+id/brand_logo"
@@ -15,7 +16,6 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
-        android:background="@drawable/ic_launcher_background"
         android:contentDescription="@string/brand_logo"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -23,15 +23,31 @@
         app:srcCompat="@drawable/ic_launcher_foreground"
         tools:srcCompat="@drawable/ic_launcher_foreground" />
 
+    <View
+        android:id="@+id/view"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        android:background="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/brand_logo" />
+
     <com.google.android.material.chip.ChipGroup
         android:id="@+id/chipGroup"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/brand_logo"
-        app:singleLine="true">
+        app:singleLine="true"
+        app:singleSelection="true">
 
         <!-- Chips can be declared here, or added dynamically. -->
         <com.google.android.material.chip.Chip
@@ -41,6 +57,8 @@
             android:text="@string/prompt_car"
             app:chipIcon="@drawable/ic_baseline_directions_car_24"
             app:chipIconVisible="true"
+            app:iconStartPadding="4dp"
+            app:textStartPadding="4dp"
             app:layout_constraintStart_toStartOf="parent"
             tools:layout_editor_absoluteY="244dp" />
 
@@ -51,6 +69,8 @@
             android:text="@string/prompt_motorcycle"
             app:chipIcon="@drawable/ic_baseline_two_wheeler_24"
             app:chipIconVisible="true"
+            app:iconStartPadding="4dp"
+            app:textStartPadding="4dp"
             app:layout_constraintStart_toStartOf="parent"
             tools:layout_editor_absoluteY="244dp" />
 
@@ -59,6 +79,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/prompt_truck"
+            app:chipIcon="@drawable/ic_baseline_local_shipping_24"
+            app:chipIconVisible="true"
+            app:iconStartPadding="4dp"
+            app:textStartPadding="4dp"
             app:layout_constraintStart_toStartOf="parent"
             tools:layout_editor_absoluteY="244dp" />
 
@@ -83,6 +107,7 @@
             android:id="@+id/brandAutoCompleteTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:inputType="textCapWords"
             android:maxLines="1" />
 
     </com.google.android.material.textfield.TextInputLayout>
@@ -110,28 +135,22 @@
 
     </com.google.android.material.textfield.TextInputLayout>
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/yearLayout"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:layout_width="match_parent"
+    <Button
+        android:id="@+id/date_input"
+        style="?attr/materialButtonOutlinedStyle"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
-        android:hint="@string/prompt_year"
+        android:paddingTop="16dp"
+        android:paddingBottom="16dp"
+        android:text="@string/prompt_year"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/modelLayout">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/year_input"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="textEmailAddress" />
-
-    </com.google.android.material.textfield.TextInputLayout>
+        app:layout_constraintTop_toBottomOf="@+id/modelLayout" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/fuelTextLayout"
@@ -151,7 +170,8 @@
         <AutoCompleteTextView
             android:id="@+id/fuelAutocompleteTextView"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:inputType="textCapWords" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -168,7 +188,7 @@
         android:hint="@string/prompt_color"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/guideline"
-        app:layout_constraintTop_toBottomOf="@+id/yearLayout">
+        app:layout_constraintTop_toBottomOf="@+id/date_input">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/color_input"
@@ -198,7 +218,7 @@
             android:id="@+id/licence_plate_input"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="textEmailAddress" />
+            android:inputType="textCapCharacters" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -213,7 +233,7 @@
         android:layout_marginRight="8dp"
         android:text="@string/add_button"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/guideline"
         app:layout_constraintTop_toBottomOf="@+id/licencePlateLayout" />
 
     <androidx.constraintlayout.widget.Guideline
@@ -222,5 +242,19 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintGuide_percent="0.5" />
+
+    <Button
+        android:id="@+id/cancel_vehicle_button"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:text="@string/cancel"
+        app:layout_constraintEnd_toStartOf="@+id/guideline"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/licencePlateLayout" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

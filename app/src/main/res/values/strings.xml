@@ -40,4 +40,5 @@
     <string name="prompt_color">Color</string>
     <string name="prompt_licence">Licence plate</string>
     <string name="add_button">Add Vehicle</string>
+    <string name="cancel">Cancel</string>
 </resources>

@@ -17,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 import com.shto.vehiclebulletin.R;
+import com.shto.vehiclebulletin.ui.vehicles.dialog.AddVehicleDialogFragment;
 
 
 public class VehiclesFragment extends Fragment {
@@ -79,7 +80,6 @@ public class VehiclesFragment extends Fragment {
 
                 int curSize = mAdapter.getItemCount();
 
-                Vehicles.mVehiclesData.add(new Vehicles("PH-20-SVM", "MAZDA 3 - 2006", "last act", "4 000 EURO", R.drawable.ic_home_black_24dp));
                 Toast.makeText(getContext(), "array size " + Vehicles.mVehiclesData.size(), Toast.LENGTH_SHORT).show();
 
                 mAdapter.notifyItemInserted(curSize + 1);
