@@ -3,6 +3,7 @@ package com.shto.vehiclebulletin.ui.vehicles.dialog;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -22,12 +23,9 @@ import com.google.android.material.datepicker.MaterialPickerOnPositiveButtonClic
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.shto.vehiclebulletin.R;
-
-import java.util.HashMap;
-import java.util.Map;
+import com.shto.vehiclebulletin.ui.vehicles.VehicleGeneral;
 
 public class AddVehicleDialogFragment extends DialogFragment {
 
@@ -124,8 +122,11 @@ public class AddVehicleDialogFragment extends DialogFragment {
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d(TAG, "createUserWithEmail:success");
                 FirebaseUser user = mAuth.getCurrentUser();
+
+                if (!validateForm()) {
+                    return;
+                }
                 updateDB(user);
                 createAlertDialog.dismiss();
             }
@@ -140,25 +141,77 @@ public class AddVehicleDialogFragment extends DialogFragment {
         return createAlertDialog;
     }
 
-    private void updateDB(FirebaseUser user) {
+    private boolean validateForm() {
+        boolean valid = true;
 
-        Map<String, Object> vehicle = new HashMap<>();
-        vehicle.put("type", selectedChipText);
-        vehicle.put("brand", mBrand.getText().toString());
-        vehicle.put("model", mModel.getText().toString());
-        vehicle.put("build-date", mBuildDate.getText().toString());
-        vehicle.put("fuel", mFuel.getText().toString());
-        vehicle.put("color", mColor.getText().toString());
-        vehicle.put("licence-plate", mLicencePlate.getText().toString());
+        String brand = mBrand.getText().toString();
+        if (TextUtils.isEmpty(brand)) {
+            mBrand.setError("Required.");
+            valid = false;
+        } else {
+            mBrand.setError(null);
+        }
 
+        String model = mModel.getText().toString();
+        if (TextUtils.isEmpty(model)) {
+            mModel.setError("Required.");
+            valid = false;
+        } else {
+            mModel.setError(null);
+        }
+
+        if (mBuildDate.getText().toString().equals(getResources().getString(R.string.prompt_year))) {
+            // TODO: validate date
+        }
+
+        String fuel = mFuel.getText().toString();
+        if (TextUtils.isEmpty(fuel)) {
+            mFuel.setError("Required.");
+            valid = false;
+        } else {
+            mFuel.setError(null);
+        }
+
+        String color = mColor.getText().toString();
+        if (TextUtils.isEmpty(color)) {
+            mColor.setError("Required.");
+            valid = false;
+        } else {
+            mColor.setError(null);
+        }
+
+        String licence = mLicencePlate.getText().toString();
+        if (TextUtils.isEmpty(licence)) {
+            mLicencePlate.setError("Required.");
+            valid = false;
+        } else {
+            mLicencePlate.setError(null);
+        }
+
+        return valid;
+    }
+
+    private void updateDB(final FirebaseUser user) {
+        String refId;
 
         if (user != null) {
-            db.collection("users")
-                    .document(user.getUid()).collection("vehicles")
-                    .add(vehicle)
-                    .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+            refId = db.collection("users").document(user.getUid()).collection("vehicles").document().getId();
+
+            VehicleGeneral vehicleGeneral = new VehicleGeneral(
+                    refId,
+                    selectedChipText,
+                    mBrand.getText().toString(),
+                    mModel.getText().toString(),
+                    mBuildDate.getText().toString(),
+                    mFuel.getText().toString(),
+                    mColor.getText().toString(),
+                    mLicencePlate.getText().toString()
+            );
+
+            db.collection("users").document(user.getUid()).collection("vehicles").document(refId).set(vehicleGeneral)
+                    .addOnSuccessListener(new OnSuccessListener<Void>() {
                         @Override
-                        public void onSuccess(DocumentReference documentReference) {
+                        public void onSuccess(Void aVoid) {
                             Log.d(TAG, "DocumentSnapshot successfully written!");
                         }
                     })
@@ -168,6 +221,7 @@ public class AddVehicleDialogFragment extends DialogFragment {
                             Log.w(TAG, "Error writing document", e);
                         }
                     });
+
         }
     }
 }

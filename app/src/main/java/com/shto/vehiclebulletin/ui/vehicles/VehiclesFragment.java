@@ -1,7 +1,6 @@
 package com.shto.vehiclebulletin.ui.vehicles;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -70,22 +69,20 @@ public class VehiclesFragment extends Fragment {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d(TAG, "working fab");
-                Toast.makeText(getContext(), "working ", Toast.LENGTH_SHORT).show();
-
                 // When you want to show your dialog, create an instance of your DialogFragment
                 // and call show(), passing the FragmentManager and a tag name for the dialog fragment.
                 DialogFragment newFragment = new AddVehicleDialogFragment();
                 newFragment.show(getParentFragmentManager(), "Add Vehicle Dialog");
 
                 int curSize = mAdapter.getItemCount();
-
-                Toast.makeText(getContext(), "array size " + Vehicles.mVehiclesData.size(), Toast.LENGTH_SHORT).show();
-
                 mAdapter.notifyItemInserted(curSize + 1);
             }
         });
 
         return view;
+    }
+
+    public void showToast() {
+        Toast.makeText(getContext(), "tret", Toast.LENGTH_SHORT).show();
     }
 }
