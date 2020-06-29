@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
+import android.widget.EditText;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -20,7 +21,6 @@ import com.google.android.material.chip.Chip;
 import com.google.android.material.chip.ChipGroup;
 import com.google.android.material.datepicker.MaterialDatePicker;
 import com.google.android.material.datepicker.MaterialPickerOnPositiveButtonClickListener;
-import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -33,11 +33,11 @@ public class AddVehicleDialogFragment extends DialogFragment {
 
     ChipGroup mChipGroup;
     AutoCompleteTextView mBrand;
-    TextInputEditText mModel;
+    EditText mModel;
     Button mBuildDate;
     AutoCompleteTextView mFuel;
-    TextInputEditText mColor;
-    TextInputEditText mLicencePlate;
+    EditText mColor;
+    EditText mLicencePlate;
 
     String selectedChipText;
 
@@ -222,6 +222,8 @@ public class AddVehicleDialogFragment extends DialogFragment {
                         }
                     });
 
+        } else {
+            mLicencePlate.setText(null);
         }
     }
 }

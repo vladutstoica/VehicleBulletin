@@ -81,8 +81,4 @@ public class VehiclesFragment extends Fragment {
 
         return view;
     }
-
-    public void showToast() {
-        Toast.makeText(getContext(), "tret", Toast.LENGTH_SHORT).show();
-    }
 }
