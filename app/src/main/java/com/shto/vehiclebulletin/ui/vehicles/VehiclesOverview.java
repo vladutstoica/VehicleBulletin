@@ -1,29 +1,40 @@
 package com.shto.vehiclebulletin.ui.vehicles;
 
+import com.shto.vehiclebulletin.R;
+
 import java.util.ArrayList;
 
-public class Vehicles {
-    public static ArrayList<Vehicles> mVehiclesData = new ArrayList<>();
+public class VehiclesOverview {
+    public static ArrayList<VehiclesOverview> mVehiclesOverviewData = new ArrayList<>();
+    private String refId;
     private String mLicencePlate;
     private String mVehicleModel;
-    private String mRenew;
-    private String mTotalCost;
-    private int mBrandLogoId;
+    private String mRenew = "No documents";
+    private String mTotalCost = "No data";
+    private int mBrandLogoId = R.drawable.ic_launcher_foreground;
 
-    public Vehicles() {
+    public VehiclesOverview() {
         // Default constructor required for calls to DataSnapshot.getValue(User.class)
     }
 
-    public Vehicles(String mLicencePlate,
-                    String mVehicleModel,
-                    String mRenew,
-                    String mTotalCost,
-                    int mVehicleLogo) {
+    public VehiclesOverview(
+            String refId,
+            String mLicencePlate,
+            String mVehicleModel,
+            String mRenew,
+            String mTotalCost,
+            int mVehicleLogo
+    ) {
+        this.refId = refId;
         this.mLicencePlate = mLicencePlate;
         this.mVehicleModel = mVehicleModel;
         this.mRenew = mRenew;
         this.mTotalCost = mTotalCost;
         this.mBrandLogoId = mVehicleLogo;
+    }
+
+    public String getRefId() {
+        return refId;
     }
 
     public String getLicencePlate() {

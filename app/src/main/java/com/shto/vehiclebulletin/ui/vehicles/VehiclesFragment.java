@@ -62,7 +62,7 @@ public class VehiclesFragment extends Fragment {
         recyclerView.setLayoutManager(layoutManager);
 
         // Specify an adapter
-        mAdapter = new VehiclesAdapter(Vehicles.mVehiclesData);
+        mAdapter = new VehiclesAdapter(VehiclesOverview.mVehiclesOverviewData);
         recyclerView.setAdapter(mAdapter);
 
         ExtendedFloatingActionButton fab = view.findViewById(R.id.extended_fab);

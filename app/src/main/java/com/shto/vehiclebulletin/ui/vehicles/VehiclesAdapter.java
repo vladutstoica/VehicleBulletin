@@ -21,7 +21,7 @@ import java.util.ArrayList;
 public class VehiclesAdapter extends RecyclerView.Adapter<VehiclesAdapter.MyViewHolder> {
 
     // Store a member variable for the vehicles data
-    private ArrayList<Vehicles> dataSet;
+    private ArrayList<VehiclesOverview> dataSet;
 
     // Involves populating data into the item through holder
     @Override
@@ -35,7 +35,7 @@ public class VehiclesAdapter extends RecyclerView.Adapter<VehiclesAdapter.MyView
     }
 
     // Pass the data array into the constructor
-    public VehiclesAdapter(ArrayList<Vehicles> dataSet) {
+    public VehiclesAdapter(ArrayList<VehiclesOverview> dataSet) {
         this.dataSet = dataSet;
     }
 

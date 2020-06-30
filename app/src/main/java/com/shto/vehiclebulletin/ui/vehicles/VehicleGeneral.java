@@ -1,7 +1,10 @@
 package com.shto.vehiclebulletin.ui.vehicles;
 
+import java.util.ArrayList;
+
 public class VehicleGeneral {
 
+    public static ArrayList<VehicleGeneral> mVehiclesGeneralData = new ArrayList<>();
     private String refId;
     private String type;
     private String brand;

@@ -26,6 +26,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.shto.vehiclebulletin.R;
 import com.shto.vehiclebulletin.ui.vehicles.VehicleGeneral;
+import com.shto.vehiclebulletin.ui.vehicles.VehiclesOverview;
 
 public class AddVehicleDialogFragment extends DialogFragment {
 
@@ -39,7 +40,8 @@ public class AddVehicleDialogFragment extends DialogFragment {
     EditText mColor;
     EditText mLicencePlate;
 
-    String selectedChipText;
+    // TODO: String selectedChipText = requireContext().getResources().getString(R.string.prompt_car);
+    String selectedChipText = "Car";
 
     private FirebaseAuth mAuth;
     private FirebaseFirestore db;
@@ -83,6 +85,7 @@ public class AddVehicleDialogFragment extends DialogFragment {
         mColor = view.findViewById(R.id.color_input);
         mLicencePlate = view.findViewById(R.id.licence_plate_input);
 
+        // Chip group selection listener
         mChipGroup.setOnCheckedChangeListener(new ChipGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(ChipGroup group, int checkedId) {
@@ -93,6 +96,7 @@ public class AddVehicleDialogFragment extends DialogFragment {
             }
         });
 
+        // Date dialog listener
         mBuildDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -122,12 +126,12 @@ public class AddVehicleDialogFragment extends DialogFragment {
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                FirebaseUser user = mAuth.getCurrentUser();
-
                 if (!validateForm()) {
                     return;
                 }
-                updateDB(user);
+
+                addProcess();
+
                 createAlertDialog.dismiss();
             }
         });
@@ -141,9 +145,16 @@ public class AddVehicleDialogFragment extends DialogFragment {
         return createAlertDialog;
     }
 
+    private void addProcess() {
+        FirebaseUser user = mAuth.getCurrentUser();
+
+        updateDB(user);
+    }
+
     private boolean validateForm() {
         boolean valid = true;
 
+        // TODO: restrict user input
         String brand = mBrand.getText().toString();
         if (TextUtils.isEmpty(brand)) {
             mBrand.setError("Required.");
@@ -197,7 +208,7 @@ public class AddVehicleDialogFragment extends DialogFragment {
         if (user != null) {
             refId = db.collection("users").document(user.getUid()).collection("vehicles").document().getId();
 
-            VehicleGeneral vehicleGeneral = new VehicleGeneral(
+            final VehicleGeneral vehicleGeneral = new VehicleGeneral(
                     refId,
                     selectedChipText,
                     mBrand.getText().toString(),
@@ -213,6 +224,7 @@ public class AddVehicleDialogFragment extends DialogFragment {
                         @Override
                         public void onSuccess(Void aVoid) {
                             Log.d(TAG, "DocumentSnapshot successfully written!");
+                            updateLocal(vehicleGeneral);
                         }
                     })
                     .addOnFailureListener(new OnFailureListener() {
@@ -225,5 +237,28 @@ public class AddVehicleDialogFragment extends DialogFragment {
         } else {
             mLicencePlate.setText(null);
         }
+    }
+
+    // TODO: optimize
+    private void updateLocal(VehicleGeneral vehicleGeneral) {
+
+        VehicleGeneral.mVehiclesGeneralData.add(vehicleGeneral);
+
+        VehiclesOverview data = new VehiclesOverview();
+        String dataRenew = data.getRenew();
+        String dataCost = data.getTotalCost();
+        int dataLogo = data.getBrandLogoId();
+
+        VehiclesOverview.mVehiclesOverviewData.add(
+                new VehiclesOverview(
+                        vehicleGeneral.getRefId(),
+                        vehicleGeneral.getLicence(),
+                        vehicleGeneral.getBrand() + " " + vehicleGeneral.getModel(),
+                        dataRenew,
+                        dataCost,
+                        dataLogo
+                )
+        );
+
     }
 }
