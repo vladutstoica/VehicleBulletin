@@ -2,7 +2,6 @@ package com.shto.vehiclebulletin.ui.vehicles.dialog;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
-import android.content.Context;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -52,22 +51,22 @@ public class AddVehicleDialogFragment extends DialogFragment {
     };
 
     // Use this instance of the interface to deliver action events
-    NoticeDialogListener listener;
+    //NoticeDialogListener listener;
 
     // Override the Fragment.onAttach() method to instantiate the NoticeDialogListener
-    @Override
-    public void onAttach(@NonNull Context context) {
-        super.onAttach(context);
-        // Verify that the host activity implements the callback interface
-        try {
-            // Instantiate the NoticeDialogListener so we can send events to the host
-            listener = (NoticeDialogListener) getTargetFragment();
-        } catch (ClassCastException e) {
-            // The activity doesn't implement the interface, throw exception
-            throw new ClassCastException( /* activity.toString()
-                    + */ " must implement NoticeDialogListener");
-        }
-    }
+//    @Override
+//    public void onAttach(@NonNull Context context) {
+//        super.onAttach(context);
+//        // Verify that the host activity implements the callback interface
+//        try {
+//            // Instantiate the NoticeDialogListener so we can send events to the host
+//            listener = (NoticeDialogListener) getTargetFragment();
+//        } catch (ClassCastException e) {
+//            // The activity doesn't implement the interface, throw exception
+//            throw new ClassCastException( /* activity.toString()
+//                    + */ " must implement NoticeDialogListener");
+//        }
+//    }
 
     @NonNull
     @Override
@@ -141,8 +140,6 @@ public class AddVehicleDialogFragment extends DialogFragment {
 
                 addProcess();
 
-                // Send the positive button event back to the host activity
-                //listener.onDialogPositiveClick();
                 createAlertDialog.dismiss();
 
             }
@@ -152,7 +149,7 @@ public class AddVehicleDialogFragment extends DialogFragment {
             @Override
             public void onClick(View v) {
                 // Send the positive button event back to the host activity
-                listener.onDialogNegativeClick();
+                //listener.onDialogNegativeClick();
                 AddVehicleDialogFragment.this.getDialog().cancel();
             }
         });
@@ -169,31 +166,6 @@ public class AddVehicleDialogFragment extends DialogFragment {
 
         // Declare an instance of FirebaseFirestore
         db = FirebaseFirestore.getInstance();
-    }
-
-    // TODO: optimize
-    private void updateLocal(VehicleGeneral vehicleGeneral) {
-
-        VehicleGeneral.mVehiclesGeneralData.add(vehicleGeneral);
-
-        VehiclesOverview data = new VehiclesOverview();
-        String dataRenew = data.getRenew();
-        String dataCost = data.getTotalCost();
-        int dataLogo = data.getBrandLogoId();
-
-        VehiclesOverview.mVehiclesOverviewData.add(
-                new VehiclesOverview(
-                        vehicleGeneral.getRefId(),
-                        vehicleGeneral.getLicence(),
-                        vehicleGeneral.getBrand() + " " + vehicleGeneral.getModel(),
-                        dataRenew,
-                        dataCost,
-                        dataLogo
-                )
-        );
-
-
-        listener.onDialogPositiveClick();
     }
 
     private void addProcess() {
@@ -290,13 +262,38 @@ public class AddVehicleDialogFragment extends DialogFragment {
         }
     }
 
+    // TODO: optimize
+    private void updateLocal(VehicleGeneral vehicleGeneral) {
+
+        VehicleGeneral.mVehiclesGeneralData.add(vehicleGeneral);
+
+        VehiclesOverview data = new VehiclesOverview();
+        String dataRenew = data.getRenew();
+        String dataCost = data.getTotalCost();
+        int dataLogo = data.getBrandLogoId();
+
+        VehiclesOverview.mVehiclesOverviewData.add(
+                new VehiclesOverview(
+                        vehicleGeneral.getRefId(),
+                        vehicleGeneral.getLicence(),
+                        vehicleGeneral.getBrand() + " " + vehicleGeneral.getModel(),
+                        dataRenew,
+                        dataCost,
+                        dataLogo
+                )
+        );
+
+        // Send the positive button event back to the host fragment
+        //listener.onDialogPositiveClick();
+    }
+
     // Event callback
     /* The activity that creates an instance of this dialog fragment must
      * implement this interface in order to receive event callbacks.
      * Each method passes the DialogFragment in case the host needs to query it. */
-    public interface NoticeDialogListener {
-        public void onDialogPositiveClick();
-
-        public void onDialogNegativeClick();
-    }
+//    public interface NoticeDialogListener {
+//        public void onDialogPositiveClick();
+//
+//        public void onDialogNegativeClick();
+//    }
 }
