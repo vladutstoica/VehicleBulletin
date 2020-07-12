@@ -5,7 +5,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
@@ -29,11 +28,10 @@ import com.shto.vehiclebulletin.ui.vehicles.dialog.AddVehicleDialogFragment;
 
 public class VehiclesFragment extends Fragment {
     private static final String TAG = "vehicles";
-    // Use this is any bug hit: private RecyclerView.Adapter mAdapter;
-    private VehiclesAdapter mAdapter;
 
-    FirebaseAuth mAuth;
-    FirebaseFirestore db;
+    private VehiclesAdapter mAdapter;
+    private FirebaseAuth mAuth;
+    private FirebaseFirestore db;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -49,7 +47,6 @@ public class VehiclesFragment extends Fragment {
             @Override
             public void handleOnBackPressed() {
                 // Handle the back button event
-                Toast.makeText(getContext(), "backbutton pressed.", Toast.LENGTH_SHORT).show();
                 requireActivity().finish();
             }
         };
@@ -63,9 +60,7 @@ public class VehiclesFragment extends Fragment {
         final View view = inflater.inflate(R.layout.fragment_vehicles, container, false);
         RecyclerView recyclerView = view.findViewById(R.id.vehicles_recycler_view);
         // TODO: make below like work
-        //mRecyclerView = inflater.inflate(R.layout.fragment_vehicles, container, false);
-
-        //Vehicles.mVehiclesData.add(new Vehicles("ActivityMain","asd","asd","ad", R.drawable.ic_home_black_24dp));
+        // mRecyclerView = inflater.inflate(R.layout.fragment_vehicles, container, false);
 
         // use this setting to improve performance if you know that changes
         // in content do not change the layout size of the RecyclerView
@@ -79,12 +74,9 @@ public class VehiclesFragment extends Fragment {
         mAdapter = new VehiclesAdapter(VehiclesOverview.mVehiclesOverviewData);
         recyclerView.setAdapter(mAdapter);
 
-        // TODO: add data to specific array
         final FirebaseUser user = mAuth.getCurrentUser();
-
         if (user != null) {
             String userId = user.getUid();
-
             db.collection("users").document(userId).collection("vehicles")
                     .addSnapshotListener(new EventListener<QuerySnapshot>() {
                         @Override
@@ -97,42 +89,15 @@ public class VehiclesFragment extends Fragment {
 
                             VehiclesOverview.mVehiclesOverviewData.clear();
 
-                            for (QueryDocumentSnapshot doc : value) {
-                                updateDB(user, doc);
+                            if (value != null) {
+                                for (QueryDocumentSnapshot doc : value) {
+                                    retrieveDB(user, doc);
+                                }
                             }
-                            Log.d(TAG, "Current cites in CA: ");
                             mAdapter.notifyDataSetChanged();
-                            //mAdapter.notifyItemRangeInserted(1, mAdapter.getItemCount());
-                            Log.d(TAG, "DATABASE read - " +
-                                    "adapter size : " + mAdapter.getItemCount());
                         }
                     });
-
-//            db.collection("users").document(userId).collection("vehicles")
-//                    .get()
-//                    .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-//                        @Override
-//                        public void onComplete(@NonNull Task<QuerySnapshot> task) {
-//                            if (task.isSuccessful() && VehiclesOverview.mVehiclesOverviewData.size() == 0) {
-//                                for (QueryDocumentSnapshot document : task.getResult()) {
-//                                    Log.d(TAG, document.getId() + " => " + document.getData());
-//                                    Log.d(TAG, document.getId() + " => " + document.getData().get("color"));
-//
-//                                    updateDB(user, doc);
-//                                }
-//
-//                                //mAdapter.notifyDataSetChanged();
-//                                mAdapter.notifyItemRangeInserted(1, mAdapter.getItemCount());
-//                                Log.d(TAG, "DATABASE read - " +
-//                                        "mAdapter notify - " +
-//                                        "adapter size : " + mAdapter.getItemCount());
-//                            } else {
-//                                Log.d(TAG, "Error getting documents: ", task.getException());
-//                            }
-//                        }
-//                    });
         }
-
 
         ExtendedFloatingActionButton fab = view.findViewById(R.id.extended_fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -141,16 +106,14 @@ public class VehiclesFragment extends Fragment {
                 // When you want to show your dialog, create an instance of your DialogFragment
                 // and call show(), passing the FragmentManager and a tag name for the dialog fragment.
                 DialogFragment addVehicleDialog = new AddVehicleDialogFragment();
-                addVehicleDialog.show(getParentFragmentManager(), "Add Vehicle Dialog");
-                addVehicleDialog.setTargetFragment(VehiclesFragment.this, 0);
-
+                addVehicleDialog.show(getParentFragmentManager(), "ADD DIALOG");
             }
         });
 
         return view;
     }
 
-    private void updateDB(FirebaseUser user, QueryDocumentSnapshot doc) {
+    private void retrieveDB(FirebaseUser user, QueryDocumentSnapshot doc) {
         if (user != null) {
             VehiclesOverview data = new VehiclesOverview();
             String dataRenew = data.getRenew();
@@ -159,8 +122,8 @@ public class VehiclesFragment extends Fragment {
 
             VehiclesOverview.mVehiclesOverviewData.add(
                     new VehiclesOverview(
-                            doc.getData().get("refId").toString(),
-                            doc.getData().get("licence").toString(),
+                            (String) doc.getData().get("refId"),
+                            (String) doc.getData().get("licence"),
                             doc.getData().get("brand") + " " + doc.getData().get("model"),
                             dataRenew,
                             dataCost,
@@ -170,17 +133,4 @@ public class VehiclesFragment extends Fragment {
         }
     }
 
-//    @Override
-//    public void onDialogPositiveClick() {
-//        // User touched the dialog's positive button
-//        //mAdapter.notifyItemInserted(mAdapter.getItemCount());
-//        Toast.makeText(getContext(), "listener triggered", Toast.LENGTH_SHORT).show();
-//        Log.d(TAG, "listener was triggered + adapter size: " + mAdapter.getItemCount());
-//    }
-//
-//    @Override
-//    public void onDialogNegativeClick() {
-//        mAdapter.notifyItemInserted(mAdapter.getItemCount());
-//        Log.d(TAG, "NEGATIVE listener was triggered + adapter size: " + mAdapter.getItemCount());
-//    }
 }

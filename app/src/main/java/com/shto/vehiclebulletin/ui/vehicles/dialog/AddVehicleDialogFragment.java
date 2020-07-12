@@ -29,44 +29,22 @@ import com.shto.vehiclebulletin.ui.vehicles.VehicleGeneral;
 import com.shto.vehiclebulletin.ui.vehicles.VehiclesOverview;
 
 public class AddVehicleDialogFragment extends DialogFragment {
-
     private static final String TAG = "Add vehicle";
 
-    ChipGroup mChipGroup;
     AutoCompleteTextView mBrand;
-    EditText mModel;
-    Button mBuildDate;
+    private static final String[] BRANDS = new String[]{
+            "Opel", "Mazda", "BMW", "Skoda", "Volkswagen"
+    };
     AutoCompleteTextView mFuel;
+    Button mBuildDate;
+    EditText mModel;
     EditText mColor;
     EditText mLicencePlate;
-
-    // TODO: String selectedChipText = requireContext().getResources().getString(R.string.prompt_car);
-    String selectedChipText = "Car";
+    ChipGroup mChipGroup;
 
     private FirebaseAuth mAuth;
     private FirebaseFirestore db;
-
-    private static final String[] COUNTRIES = new String[]{
-            "Belgium", "France", "Italy", "Germany", "Spain"
-    };
-
-    // Use this instance of the interface to deliver action events
-    //NoticeDialogListener listener;
-
-    // Override the Fragment.onAttach() method to instantiate the NoticeDialogListener
-//    @Override
-//    public void onAttach(@NonNull Context context) {
-//        super.onAttach(context);
-//        // Verify that the host activity implements the callback interface
-//        try {
-//            // Instantiate the NoticeDialogListener so we can send events to the host
-//            listener = (NoticeDialogListener) getTargetFragment();
-//        } catch (ClassCastException e) {
-//            // The activity doesn't implement the interface, throw exception
-//            throw new ClassCastException( /* activity.toString()
-//                    + */ " must implement NoticeDialogListener");
-//        }
-//    }
+    String selectedChipText;
 
     @NonNull
     @Override
@@ -80,7 +58,7 @@ public class AddVehicleDialogFragment extends DialogFragment {
 
         // Create DatePicker Dialog
         final MaterialDatePicker.Builder<Long> datePicker = MaterialDatePicker.Builder.datePicker();
-        datePicker.setTitleText("R.string.your_text");
+        datePicker.setTitleText(R.string.prompt_year);
         final MaterialDatePicker<Long> picker = datePicker.build();
 
         // Add vehicle dialog member variable
@@ -92,6 +70,7 @@ public class AddVehicleDialogFragment extends DialogFragment {
         mColor = view.findViewById(R.id.color_input);
         mLicencePlate = view.findViewById(R.id.licence_plate_input);
 
+        selectedChipText = getResources().getString(R.string.prompt_car);
         // Chip group selection listener
         mChipGroup.setOnCheckedChangeListener(new ChipGroup.OnCheckedChangeListener() {
             @Override
@@ -117,40 +96,35 @@ public class AddVehicleDialogFragment extends DialogFragment {
             }
         });
 
-        // Get a reference to the AutoCompleteTextView in the layout
+        /* DROPDOWN AUTOCOMPLETETEXTVIEW
+         * Get a reference to the AutoCompleteTextView in the layout
+         * Create the adapter and set it to the AutoCompleteTextView
+         */
         AutoCompleteTextView autoTextView = mBrand;
-        // Get the string array
-        // Create the adapter and set it to the AutoCompleteTextView
         ArrayAdapter<String> adapter = new ArrayAdapter<>(
-                requireActivity(), android.R.layout.simple_dropdown_item_1line, COUNTRIES
+                requireActivity(), android.R.layout.simple_dropdown_item_1line, BRANDS
         );
         autoTextView.setAdapter(adapter);
 
-        // Positive and Cancel button setup
+        // Custom buttons
         Button addButton = view.findViewById(R.id.add_vehicle_button);
         Button cancelButton = view.findViewById(R.id.cancel_vehicle_button);
 
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 if (!validateForm()) {
                     return;
                 }
-
                 addProcess();
-
                 createAlertDialog.dismiss();
-
             }
         });
 
         cancelButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Send the positive button event back to the host activity
-                //listener.onDialogNegativeClick();
-                AddVehicleDialogFragment.this.getDialog().cancel();
+                AddVehicleDialogFragment.this.requireDialog().cancel();
             }
         });
 
@@ -161,17 +135,8 @@ public class AddVehicleDialogFragment extends DialogFragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        // Initialize Firebase Auth
         mAuth = FirebaseAuth.getInstance();
-
-        // Declare an instance of FirebaseFirestore
         db = FirebaseFirestore.getInstance();
-    }
-
-    private void addProcess() {
-        FirebaseUser user = mAuth.getCurrentUser();
-
-        updateDB(user);
     }
 
     private boolean validateForm() {
@@ -194,9 +159,9 @@ public class AddVehicleDialogFragment extends DialogFragment {
             mModel.setError(null);
         }
 
-        if (mBuildDate.getText().toString().equals(getResources().getString(R.string.prompt_year))) {
-            // TODO: validate date
-        }
+//        if (mBuildDate.getText().toString().equals(getResources().getString(R.string.prompt_year))) {
+//            // TODO: validate date
+//        }
 
         String fuel = mFuel.getText().toString();
         if (TextUtils.isEmpty(fuel)) {
@@ -225,11 +190,21 @@ public class AddVehicleDialogFragment extends DialogFragment {
         return valid;
     }
 
+    private void addProcess() {
+        FirebaseUser user = mAuth.getCurrentUser();
+
+        updateDB(user);
+    }
+
     private void updateDB(final FirebaseUser user) {
         String refId;
 
         if (user != null) {
-            refId = db.collection("users").document(user.getUid()).collection("vehicles").document().getId();
+            refId = db.collection("users")
+                    .document(user.getUid())
+                    .collection("vehicles")
+                    .document()
+                    .getId();
 
             final VehicleGeneral vehicleGeneral = new VehicleGeneral(
                     refId,
@@ -242,7 +217,11 @@ public class AddVehicleDialogFragment extends DialogFragment {
                     mLicencePlate.getText().toString()
             );
 
-            db.collection("users").document(user.getUid()).collection("vehicles").document(refId).set(vehicleGeneral)
+            db.collection("users")
+                    .document(user.getUid())
+                    .collection("vehicles")
+                    .document(refId)
+                    .set(vehicleGeneral)
                     .addOnSuccessListener(new OnSuccessListener<Void>() {
                         @Override
                         public void onSuccess(Void aVoid) {
@@ -256,9 +235,6 @@ public class AddVehicleDialogFragment extends DialogFragment {
                             Log.w(TAG, "Error writing document", e);
                         }
                     });
-
-        } else {
-            mLicencePlate.setText(null);
         }
     }
 
@@ -282,18 +258,5 @@ public class AddVehicleDialogFragment extends DialogFragment {
                         dataLogo
                 )
         );
-
-        // Send the positive button event back to the host fragment
-        //listener.onDialogPositiveClick();
     }
-
-    // Event callback
-    /* The activity that creates an instance of this dialog fragment must
-     * implement this interface in order to receive event callbacks.
-     * Each method passes the DialogFragment in case the host needs to query it. */
-//    public interface NoticeDialogListener {
-//        public void onDialogPositiveClick();
-//
-//        public void onDialogNegativeClick();
-//    }
 }
