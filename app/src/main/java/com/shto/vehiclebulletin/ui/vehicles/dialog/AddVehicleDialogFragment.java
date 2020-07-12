@@ -32,9 +32,6 @@ public class AddVehicleDialogFragment extends DialogFragment {
     private static final String TAG = "Add vehicle";
 
     AutoCompleteTextView mBrand;
-    private static final String[] BRANDS = new String[]{
-            "Opel", "Mazda", "BMW", "Skoda", "Volkswagen"
-    };
     AutoCompleteTextView mFuel;
     Button mBuildDate;
     EditText mModel;
@@ -42,9 +39,14 @@ public class AddVehicleDialogFragment extends DialogFragment {
     EditText mLicencePlate;
     ChipGroup mChipGroup;
 
+    String selectedChipText;
+
     private FirebaseAuth mAuth;
     private FirebaseFirestore db;
-    String selectedChipText;
+
+    private static final String[] BRANDS = new String[]{
+            "Opel", "Mazda", "BMW", "Skoda", "Volkswagen"
+    };
 
     @NonNull
     @Override
