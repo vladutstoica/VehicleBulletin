@@ -112,7 +112,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textCapCharacters"
-            android:maxLines="1" />
+            android:maxLines="1"
+            android:imeOptions="actionNext" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -176,7 +177,8 @@
             android:id="@+id/fuelAutocompleteTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="textCapWords" />
+            android:inputType="textCapWords"
+            android:imeOptions="actionNext" />
 
     </com.google.android.material.textfield.TextInputLayout>
 

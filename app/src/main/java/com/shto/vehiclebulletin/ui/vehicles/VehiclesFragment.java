@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -26,7 +27,7 @@ import com.shto.vehiclebulletin.R;
 import com.shto.vehiclebulletin.ui.vehicles.dialog.AddVehicleDialogFragment;
 
 
-public class VehiclesFragment extends Fragment {
+public class VehiclesFragment extends Fragment implements VehiclesAdapter.OnVehicleListener {
     private static final String TAG = "vehicles";
 
     private VehiclesAdapter mAdapter;
@@ -71,7 +72,7 @@ public class VehiclesFragment extends Fragment {
         recyclerView.setLayoutManager(layoutManager);
 
         // Specify an adapter
-        mAdapter = new VehiclesAdapter(VehiclesOverview.mVehiclesOverviewData);
+        mAdapter = new VehiclesAdapter(VehiclesOverview.mVehiclesOverviewData, this);
         recyclerView.setAdapter(mAdapter);
 
         final FirebaseUser user = mAuth.getCurrentUser();
@@ -133,4 +134,9 @@ public class VehiclesFragment extends Fragment {
         }
     }
 
+    @Override
+    public void onVehicleClick(int position) {
+        Log.d(TAG, "onVehicleClick: click registered on position " + position);
+        Navigation.findNavController(requireView()).navigate(R.id.action_navigation_vehicles_to_detailsFragment);
+    }
 }

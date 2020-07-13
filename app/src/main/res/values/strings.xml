@@ -41,4 +41,11 @@
     <string name="prompt_licence">Licence plate</string>
     <string name="add_button">Add Vehicle</string>
     <string name="cancel">Cancel</string>
+
+    <!-- Strings related to TabLayout -->
+    <string-array name="tab_layout">
+        <item>General</item>
+        <item>Docs</item>
+        <item>Overhauls</item>
+    </string-array>
 </resources>
