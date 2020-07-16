@@ -64,7 +64,7 @@ public class AddVehicleDialogFragment extends DialogFragment {
         final MaterialDatePicker<Long> picker = datePicker.build();
 
         // Add vehicle dialog member variable
-        mChipGroup = view.findViewById(R.id.chipGroup);
+        mChipGroup = view.findViewById(R.id.chip_group);
         mBrand = view.findViewById(R.id.brandAutoCompleteTextView);
         mModel = view.findViewById(R.id.model_input);
         mBuildDate = view.findViewById(R.id.date_input);

@@ -6,6 +6,17 @@
     android:layout_height="match_parent"
     tools:context=".ui.login.LoginFragment">
 
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:contentDescription="@string/accessibility_logo"
+        app:layout_constraintBottom_toTopOf="@+id/textInputLayout4"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_launcher_foreground" />
+
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textInputLayout4"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
@@ -39,7 +50,6 @@
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         android:hint="@string/prompt_password"
-        app:layout_constraintBottom_toTopOf="@+id/login_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/horizontal_middle_guideline">
@@ -82,15 +92,5 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.5" />
-
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:srcCompat="@drawable/ic_launcher_foreground"
-        app:layout_constraintBottom_toTopOf="@+id/textInputLayout4"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

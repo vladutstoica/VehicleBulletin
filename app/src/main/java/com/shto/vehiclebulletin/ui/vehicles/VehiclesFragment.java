@@ -24,6 +24,7 @@ import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.shto.vehiclebulletin.R;
+import com.shto.vehiclebulletin.ui.vehicles.adapters.VehiclesAdapter;
 import com.shto.vehiclebulletin.ui.vehicles.dialog.AddVehicleDialogFragment;
 
 
@@ -89,6 +90,7 @@ public class VehiclesFragment extends Fragment implements VehiclesAdapter.OnVehi
                             }
 
                             VehiclesOverview.mVehiclesOverviewData.clear();
+                            VehicleGeneral.mVehiclesGeneralData.clear();
 
                             if (value != null) {
                                 for (QueryDocumentSnapshot doc : value) {
@@ -131,12 +133,23 @@ public class VehiclesFragment extends Fragment implements VehiclesAdapter.OnVehi
                             dataLogo
                     )
             );
+
+            VehicleGeneral.mVehiclesGeneralData
+                    .add(doc.toObject(VehicleGeneral.class));
+            Log.d(TAG, "retrieveDB: "
+                    + VehicleGeneral.mVehiclesGeneralData.get(0).getBrand());
         }
     }
 
     @Override
     public void onVehicleClick(int position) {
         Log.d(TAG, "onVehicleClick: click registered on position " + position);
-        Navigation.findNavController(requireView()).navigate(R.id.action_navigation_vehicles_to_detailsFragment);
+        Navigation.findNavController(requireView())
+                .navigate(R.id.action_navigation_vehicles_to_detailsFragment);
+    }
+
+    @Override
+    public void onVehicleLongClick(int position) {
+        Log.d(TAG, "onVehicleClick: long click registered on position " + position);
     }
 }

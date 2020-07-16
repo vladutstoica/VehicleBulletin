@@ -6,6 +6,7 @@
 
     <string name="brand_logo">Brand logo</string>
     <string name="vehicle_type">Vehicle type</string>
+    <string name="fab_vehicles">Add Vehicles</string>
 
     <!-- Strings related to vehicles types -->
     <string name="prompt_car">Car</string>
@@ -13,6 +14,7 @@
     <string name="prompt_truck">Truck</string>
 
     <!-- Strings related to login -->
+    <string name="accessibility_logo">Application Logo</string>
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password</string>
     <string name="prompt_login">LOGIN</string>

@@ -20,8 +20,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // Initialize the FirebaseAuth instance
-        // Declare an instance of FirebaseAuth
         FirebaseAuth auth = FirebaseAuth.getInstance();
 
         BottomNavigationView navView = findViewById(R.id.nav_view);
@@ -31,12 +29,13 @@ public class MainActivity extends AppCompatActivity {
                 R.id.navigation_home, R.id.navigation_vehicles, R.id.navigation_profile)
                 .build();
 
-        //FragmentContainerView using findNavController
-        //https://stackoverflow.com/questions/59275009/fragmentcontainerview-using-findnavcontroller
-        //NavController navController = getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment).find
+        // FragmentContainerView using findNavController
+        // https://stackoverflow.com/questions/59275009/fragmentcontainerview-using-findnavcontroller
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
+        // NavHostFragment navHostFragment = (NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment);
+        // NavController navController = navHostFragment.getNavController();
 
-        // TODO: uncomment if actionbar enabled
+        // UNCOMMENT IF ACTIONBAR ENABLED
         //NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(navView, navController);
 

@@ -1,4 +1,4 @@
-package com.shto.vehiclebulletin.ui.vehicles;
+package com.shto.vehiclebulletin.ui.vehicles.adapters;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,6 +11,7 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.shto.vehiclebulletin.R;
+import com.shto.vehiclebulletin.ui.vehicles.VehiclesOverview;
 
 import java.util.ArrayList;
 
@@ -56,7 +57,7 @@ public class VehiclesAdapter extends RecyclerView.Adapter<VehiclesAdapter.MyView
 
     // Provide a direct reference to each of the views within a data item
     // Used to cache the views within the item layout for fast access
-    public static class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    public static class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener, View.OnLongClickListener {
         // Your holder should contain a member variable
         // for any view that will be set as you render a row
         private TextView mLicencePlateTextView;
@@ -83,11 +84,18 @@ public class VehiclesAdapter extends RecyclerView.Adapter<VehiclesAdapter.MyView
             this.onVehicleListener = onVehicleListener;
 
             itemView.setOnClickListener(this);
+            itemView.setOnLongClickListener(this);
         }
 
         @Override
         public void onClick(View v) {
             onVehicleListener.onVehicleClick(getAdapterPosition());
+        }
+
+        @Override
+        public boolean onLongClick(View v) {
+            onVehicleListener.onVehicleLongClick(getAdapterPosition());
+            return true;
         }
     }
 
@@ -99,5 +107,6 @@ public class VehiclesAdapter extends RecyclerView.Adapter<VehiclesAdapter.MyView
 
     public interface OnVehicleListener {
         void onVehicleClick(int position);
+        void onVehicleLongClick(int position);
     }
 }
