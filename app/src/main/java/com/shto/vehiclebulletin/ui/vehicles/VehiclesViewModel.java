@@ -1,19 +1,17 @@
 package com.shto.vehiclebulletin.ui.vehicles;
 
-import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 public class VehiclesViewModel extends ViewModel {
 
-    private MutableLiveData<String> mText;
+    private MutableLiveData<String> mClickPosition = new MutableLiveData<>();
 
-    public VehiclesViewModel() {
-        mText = new MutableLiveData<>();
-        mText.setValue("This is dashboard fragment");
+    public void setClickPosition(String clickPosition) {
+        mClickPosition.setValue(clickPosition);
     }
 
-    public LiveData<String> getText() {
-        return mText;
+    public MutableLiveData<String> getClickPosition() {
+        return mClickPosition;
     }
 }

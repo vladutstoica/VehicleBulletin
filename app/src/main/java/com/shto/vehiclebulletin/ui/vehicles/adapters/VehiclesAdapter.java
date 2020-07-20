@@ -7,9 +7,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.card.MaterialCardView;
 import com.shto.vehiclebulletin.R;
 import com.shto.vehiclebulletin.ui.vehicles.VehiclesOverview;
 
@@ -49,7 +49,7 @@ public class VehiclesAdapter extends RecyclerView.Adapter<VehiclesAdapter.MyView
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         // Inflate the custom layout
-        CardView cardView = (CardView) LayoutInflater.from(parent.getContext())
+        MaterialCardView cardView = (MaterialCardView) LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.card_vehicles, parent, false);
         // Return a new holder instance
         return new MyViewHolder(cardView, mOnVehicleListener);

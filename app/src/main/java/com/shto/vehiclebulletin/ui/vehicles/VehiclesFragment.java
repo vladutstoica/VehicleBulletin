@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -30,6 +31,8 @@ import com.shto.vehiclebulletin.ui.vehicles.dialog.AddVehicleDialogFragment;
 
 public class VehiclesFragment extends Fragment implements VehiclesAdapter.OnVehicleListener {
     private static final String TAG = "vehicles";
+
+    private VehiclesViewModel mVehiclesViewModel;
 
     private VehiclesAdapter mAdapter;
     private FirebaseAuth mAuth;
@@ -58,8 +61,11 @@ public class VehiclesFragment extends Fragment implements VehiclesAdapter.OnVehi
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        mVehiclesViewModel =
+                new ViewModelProvider(requireActivity()).get(VehiclesViewModel.class);
 
         final View view = inflater.inflate(R.layout.fragment_vehicles, container, false);
+
         RecyclerView recyclerView = view.findViewById(R.id.vehicles_recycler_view);
         // TODO: make below like work
         // mRecyclerView = inflater.inflate(R.layout.fragment_vehicles, container, false);
@@ -143,7 +149,8 @@ public class VehiclesFragment extends Fragment implements VehiclesAdapter.OnVehi
 
     @Override
     public void onVehicleClick(int position) {
-        Log.d(TAG, "onVehicleClick: click registered on position " + position);
+        mVehiclesViewModel.setClickPosition(String.valueOf(position));
+
         Navigation.findNavController(requireView())
                 .navigate(R.id.action_navigation_vehicles_to_detailsFragment);
     }
