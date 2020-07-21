@@ -1,4 +1,4 @@
-package com.shto.vehiclebulletin.ui.vehicles;
+package com.shto.vehiclebulletin.ui.vehicles.pojos;
 
 import java.util.ArrayList;
 

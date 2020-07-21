@@ -1,4 +1,4 @@
-package com.shto.vehiclebulletin.ui.vehicles;
+package com.shto.vehiclebulletin.ui.vehicles.pojos;
 
 import com.shto.vehiclebulletin.R;
 

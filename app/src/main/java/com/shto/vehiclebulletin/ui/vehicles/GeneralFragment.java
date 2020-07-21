@@ -11,6 +11,7 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.shto.vehiclebulletin.R;
+import com.shto.vehiclebulletin.ui.vehicles.pojos.VehicleGeneral;
 
 public class GeneralFragment extends Fragment {
     VehiclesViewModel mVehiclesViewModel;

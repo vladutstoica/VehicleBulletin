@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.card.MaterialCardView;
 import com.shto.vehiclebulletin.R;
-import com.shto.vehiclebulletin.ui.vehicles.VehiclesOverview;
+import com.shto.vehiclebulletin.ui.vehicles.pojos.VehiclesOverview;
 
 import java.util.ArrayList;
 

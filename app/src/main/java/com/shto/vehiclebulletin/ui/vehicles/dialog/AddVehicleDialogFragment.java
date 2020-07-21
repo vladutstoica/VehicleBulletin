@@ -25,8 +25,8 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.shto.vehiclebulletin.R;
-import com.shto.vehiclebulletin.ui.vehicles.VehicleGeneral;
-import com.shto.vehiclebulletin.ui.vehicles.VehiclesOverview;
+import com.shto.vehiclebulletin.ui.vehicles.pojos.VehicleGeneral;
+import com.shto.vehiclebulletin.ui.vehicles.pojos.VehiclesOverview;
 
 public class AddVehicleDialogFragment extends DialogFragment {
     private static final String TAG = "Add vehicle";
@@ -51,7 +51,7 @@ public class AddVehicleDialogFragment extends DialogFragment {
     @NonNull
     @Override
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
-        View view = getLayoutInflater().inflate(R.layout.dialog_add_vehicles, null);
+        View view = getLayoutInflater().inflate(R.layout.dialog_vehicles_add, null);
 
         // Use the Builder class for convenient dialog construction
         final AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getActivity());
@@ -69,7 +69,7 @@ public class AddVehicleDialogFragment extends DialogFragment {
         mModel = view.findViewById(R.id.model_input);
         mBuildDate = view.findViewById(R.id.date_input);
         mFuel = view.findViewById(R.id.fuelAutocompleteTextView);
-        mColor = view.findViewById(R.id.color_input);
+        mColor = view.findViewById(R.id.input_overhauls_name);
         mLicencePlate = view.findViewById(R.id.licence_plate_input);
 
         selectedChipText = getResources().getString(R.string.prompt_car);

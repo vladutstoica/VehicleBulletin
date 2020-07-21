@@ -27,6 +27,8 @@ import com.google.firebase.firestore.QuerySnapshot;
 import com.shto.vehiclebulletin.R;
 import com.shto.vehiclebulletin.ui.vehicles.adapters.VehiclesAdapter;
 import com.shto.vehiclebulletin.ui.vehicles.dialog.AddVehicleDialogFragment;
+import com.shto.vehiclebulletin.ui.vehicles.pojos.VehicleGeneral;
+import com.shto.vehiclebulletin.ui.vehicles.pojos.VehiclesOverview;
 
 
 public class VehiclesFragment extends Fragment implements VehiclesAdapter.OnVehicleListener {

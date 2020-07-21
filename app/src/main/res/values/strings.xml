@@ -51,6 +51,8 @@
     <string name="overhauls_servicename">Overhauls service name</string>
     <string name="overhauls_name">Overhauls name</string>
     <string name="overhauls_buydate">Overhauls buy date</string>
+    <string name="btn_documents_add">Add document</string>
+    <string name="btn_overhauls_add">Add Overhaul</string>
 
     <!-- Strings related to TabLayout -->
     <string-array name="tab_layout">
