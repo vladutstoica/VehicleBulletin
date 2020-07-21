@@ -53,6 +53,7 @@
     <string name="overhauls_buydate">Overhauls buy date</string>
     <string name="btn_documents_add">Add document</string>
     <string name="btn_overhauls_add">Add Overhaul</string>
+    <string name="btn_documents_dates">Set document valid dates</string>
 
     <!-- Strings related to TabLayout -->
     <string-array name="tab_layout">

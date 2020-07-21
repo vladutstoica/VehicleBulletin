@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class VehicleGeneral {
 
-    public static ArrayList<VehicleGeneral> mVehiclesGeneralData = new ArrayList<>();
+    public static ArrayList<VehicleGeneral> sVehicleGenerals = new ArrayList<>();
     private String refId;
     private String type;
     private String brand;

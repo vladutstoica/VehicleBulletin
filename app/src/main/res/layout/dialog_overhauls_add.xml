@@ -79,7 +79,7 @@
         android:layout_marginRight="8dp"
         android:paddingTop="16dp"
         android:paddingBottom="16dp"
-        android:text="@string/prompt_year"
+        android:text="@string/overhauls_buydate"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/layout_overhauls_servicename" />

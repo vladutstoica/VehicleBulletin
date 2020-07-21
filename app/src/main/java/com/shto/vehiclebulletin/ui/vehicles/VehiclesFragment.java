@@ -81,7 +81,7 @@ public class VehiclesFragment extends Fragment implements VehiclesAdapter.OnVehi
         recyclerView.setLayoutManager(layoutManager);
 
         // Specify an adapter
-        mAdapter = new VehiclesAdapter(VehiclesOverview.mVehiclesOverviewData, this);
+        mAdapter = new VehiclesAdapter(VehiclesOverview.sVehiclesOverviews, this);
         recyclerView.setAdapter(mAdapter);
 
         final FirebaseUser user = mAuth.getCurrentUser();
@@ -97,8 +97,8 @@ public class VehiclesFragment extends Fragment implements VehiclesAdapter.OnVehi
                                 return;
                             }
 
-                            VehiclesOverview.mVehiclesOverviewData.clear();
-                            VehicleGeneral.mVehiclesGeneralData.clear();
+                            VehiclesOverview.sVehiclesOverviews.clear();
+                            VehicleGeneral.sVehicleGenerals.clear();
 
                             if (value != null) {
                                 for (QueryDocumentSnapshot doc : value) {
@@ -131,7 +131,7 @@ public class VehiclesFragment extends Fragment implements VehiclesAdapter.OnVehi
             String dataCost = data.getTotalCost();
             int dataLogo = data.getBrandLogoId();
 
-            VehiclesOverview.mVehiclesOverviewData.add(
+            VehiclesOverview.sVehiclesOverviews.add(
                     new VehiclesOverview(
                             (String) doc.getData().get("refId"),
                             (String) doc.getData().get("licence"),
@@ -142,10 +142,10 @@ public class VehiclesFragment extends Fragment implements VehiclesAdapter.OnVehi
                     )
             );
 
-            VehicleGeneral.mVehiclesGeneralData
+            VehicleGeneral.sVehicleGenerals
                     .add(doc.toObject(VehicleGeneral.class));
             Log.d(TAG, "retrieveDB: "
-                    + VehicleGeneral.mVehiclesGeneralData.get(0).getBrand());
+                    + VehicleGeneral.sVehicleGenerals.get(0).getBrand());
         }
     }
 

@@ -63,11 +63,11 @@ public class GeneralFragment extends Fragment {
     }
 
     private void updateView() {
-        brand.setText(VehicleGeneral.mVehiclesGeneralData.get(clickPosition[0]).getBrand());
-        model.setText(VehicleGeneral.mVehiclesGeneralData.get(clickPosition[0]).getModel());
-        buildDate.setText(VehicleGeneral.mVehiclesGeneralData.get(clickPosition[0]).getDate());
-        fuel.setText(VehicleGeneral.mVehiclesGeneralData.get(clickPosition[0]).getFuel());
-        color.setText(VehicleGeneral.mVehiclesGeneralData.get(clickPosition[0]).getColor());
-        licencePlate.setText(VehicleGeneral.mVehiclesGeneralData.get(clickPosition[0]).getLicence());
+        brand.setText(VehicleGeneral.sVehicleGenerals.get(clickPosition[0]).getBrand());
+        model.setText(VehicleGeneral.sVehicleGenerals.get(clickPosition[0]).getModel());
+        buildDate.setText(VehicleGeneral.sVehicleGenerals.get(clickPosition[0]).getDate());
+        fuel.setText(VehicleGeneral.sVehicleGenerals.get(clickPosition[0]).getFuel());
+        color.setText(VehicleGeneral.sVehicleGenerals.get(clickPosition[0]).getColor());
+        licencePlate.setText(VehicleGeneral.sVehicleGenerals.get(clickPosition[0]).getLicence());
     }
 }

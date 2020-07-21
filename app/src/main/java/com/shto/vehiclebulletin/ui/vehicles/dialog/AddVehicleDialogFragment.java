@@ -240,17 +240,19 @@ public class AddVehicleDialogFragment extends DialogFragment {
         }
     }
 
-    // TODO: optimize
     private void updateLocal(VehicleGeneral vehicleGeneral) {
 
-        VehicleGeneral.mVehiclesGeneralData.add(vehicleGeneral);
+        // Add to generals
+        VehicleGeneral.sVehicleGenerals.add(vehicleGeneral);
 
+
+        // Add  to overviews - TODO: TO OPTIMIZE
         VehiclesOverview data = new VehiclesOverview();
         String dataRenew = data.getRenew();
         String dataCost = data.getTotalCost();
         int dataLogo = data.getBrandLogoId();
 
-        VehiclesOverview.mVehiclesOverviewData.add(
+        VehiclesOverview.sVehiclesOverviews.add(
                 new VehiclesOverview(
                         vehicleGeneral.getRefId(),
                         vehicleGeneral.getLicence(),

@@ -5,7 +5,7 @@ import com.shto.vehiclebulletin.R;
 import java.util.ArrayList;
 
 public class VehiclesOverview {
-    public static ArrayList<VehiclesOverview> mVehiclesOverviewData = new ArrayList<>();
+    public static ArrayList<VehiclesOverview> sVehiclesOverviews = new ArrayList<>();
     private String refId;
     private String mLicencePlate;
     private String mVehicleModel;
