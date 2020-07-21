@@ -51,7 +51,7 @@ public class AddVehicleDialogFragment extends DialogFragment {
     @NonNull
     @Override
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
-        View view = getLayoutInflater().inflate(R.layout.vehicle_dialog, null);
+        View view = getLayoutInflater().inflate(R.layout.dialog_add_vehicles, null);
 
         // Use the Builder class for convenient dialog construction
         final AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getActivity());

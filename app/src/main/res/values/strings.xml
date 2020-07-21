@@ -43,6 +43,14 @@
     <string name="prompt_licence">Licence plate</string>
     <string name="add_button">Add Vehicle</string>
     <string name="cancel">Cancel</string>
+    <string name="document_price">Document price</string>
+    <string name="document_name">Document name</string>
+    <string name="document_buydate">Document buy date</string>
+    <string name="document_expirationdate">Document expiration date</string>
+    <string name="overhauls_price">Overhauls price</string>
+    <string name="overhauls_servicename">Overhauls service name</string>
+    <string name="overhauls_name">Overhauls name</string>
+    <string name="overhauls_buydate">Overhauls buy date</string>
 
     <!-- Strings related to TabLayout -->
     <string-array name="tab_layout">
