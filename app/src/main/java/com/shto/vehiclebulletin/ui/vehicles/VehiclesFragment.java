@@ -35,7 +35,7 @@ public class VehiclesFragment extends Fragment implements VehiclesAdapter.OnVehi
     private static final String TAG = "vehicles";
 
     private VehiclesViewModel mVehiclesViewModel;
-
+    // TODO: STOP SNAPSHOTLISTENER FROM LISTENING FOR FIRESTORE DATA WHEN IS OUT OF SCREEN
     private VehiclesAdapter mAdapter;
     private FirebaseAuth mAuth;
     private FirebaseFirestore db;
@@ -87,7 +87,9 @@ public class VehiclesFragment extends Fragment implements VehiclesAdapter.OnVehi
         final FirebaseUser user = mAuth.getCurrentUser();
         if (user != null) {
             String userId = user.getUid();
-            db.collection("users").document(userId).collection("vehicles")
+            db.collection("users")
+                    .document(userId)
+                    .collection("vehicles")
                     .addSnapshotListener(new EventListener<QuerySnapshot>() {
                         @Override
                         public void onEvent(@Nullable QuerySnapshot value,

@@ -33,17 +33,6 @@ public class VehiclesAdapter extends RecyclerView.Adapter<VehiclesAdapter.MyView
         this.mOnVehicleListener = onVehicleListener;
     }
 
-    // Involves populating data into the item through holder
-    @Override
-    public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        // Set item views based on your views and data model
-        holder.mLicencePlateTextView.setText(dataSet.get(position).getLicencePlate());
-        holder.mVehicleModelTextView.setText(dataSet.get(position).getVehicleModel());
-        holder.mRenewTextView.setText(dataSet.get(position).getRenew());
-        holder.mTotalCostTextView.setText(dataSet.get(position).getTotalCost());
-        holder.mBrandLogoId.setImageResource(dataSet.get(position).getBrandLogoId());
-    }
-
     // Usually involves inflating a layout from XML and returning the holder
     @NonNull
     @Override
@@ -53,6 +42,17 @@ public class VehiclesAdapter extends RecyclerView.Adapter<VehiclesAdapter.MyView
                 .inflate(R.layout.card_vehicles, parent, false);
         // Return a new holder instance
         return new MyViewHolder(cardView, mOnVehicleListener);
+    }
+
+    // Involves populating data into the item through holder
+    @Override
+    public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
+        // Set item views based on your views and data model
+        holder.mLicencePlateTextView.setText(dataSet.get(position).getLicencePlate());
+        holder.mVehicleModelTextView.setText(dataSet.get(position).getVehicleModel());
+        holder.mRenewTextView.setText(dataSet.get(position).getRenew());
+        holder.mTotalCostTextView.setText(dataSet.get(position).getTotalCost());
+        holder.mBrandLogoId.setImageResource(dataSet.get(position).getBrandLogoId());
     }
 
     // Provide a direct reference to each of the views within a data item

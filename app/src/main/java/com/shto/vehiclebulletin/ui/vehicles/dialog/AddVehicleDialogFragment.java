@@ -245,7 +245,6 @@ public class AddVehicleDialogFragment extends DialogFragment {
         // Add to generals
         VehicleGeneral.sVehicleGenerals.add(vehicleGeneral);
 
-
         // Add  to overviews - TODO: TO OPTIMIZE
         VehiclesOverview data = new VehiclesOverview();
         String dataRenew = data.getRenew();
