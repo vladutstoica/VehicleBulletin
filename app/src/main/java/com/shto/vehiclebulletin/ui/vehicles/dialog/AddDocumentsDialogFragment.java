@@ -30,7 +30,7 @@ import com.shto.vehiclebulletin.ui.vehicles.VehiclesViewModel;
 import com.shto.vehiclebulletin.ui.vehicles.pojos.VehicleDocuments;
 import com.shto.vehiclebulletin.ui.vehicles.pojos.VehicleGeneral;
 
-public class AddDocumentDialogFragment extends DialogFragment {
+public class AddDocumentsDialogFragment extends DialogFragment {
 
     private static final String TAG = "document";
     EditText mDocName;
@@ -116,7 +116,7 @@ public class AddDocumentDialogFragment extends DialogFragment {
         cancelButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AddDocumentDialogFragment.this.requireDialog().cancel();
+                AddDocumentsDialogFragment.this.requireDialog().cancel();
             }
         });
 

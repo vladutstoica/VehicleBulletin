@@ -55,6 +55,8 @@
     <string name="btn_overhauls_add">Add Overhaul</string>
     <string name="btn_documents_dates">Set document valid dates</string>
 
+    <string name="required">Required</string>
+
     <!-- Strings related to TabLayout -->
     <string-array name="tab_layout">
         <item>General</item>

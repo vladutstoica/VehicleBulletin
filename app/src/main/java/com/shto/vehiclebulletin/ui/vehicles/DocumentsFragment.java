@@ -17,7 +17,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.shto.vehiclebulletin.R;
 import com.shto.vehiclebulletin.ui.vehicles.adapters.DocumentsAdapter;
-import com.shto.vehiclebulletin.ui.vehicles.dialog.AddDocumentDialogFragment;
+import com.shto.vehiclebulletin.ui.vehicles.dialog.AddDocumentsDialogFragment;
 import com.shto.vehiclebulletin.ui.vehicles.pojos.VehicleDocuments;
 
 public class DocumentsFragment extends Fragment {
@@ -109,7 +109,7 @@ public class DocumentsFragment extends Fragment {
             public void onClick(View v) {
                 // When you want to show your dialog, create an instance of your DialogFragment
                 // and call show(), passing the FragmentManager and a tag name for the dialog fragment.
-                DialogFragment addDocumentDialog = new AddDocumentDialogFragment();
+                DialogFragment addDocumentDialog = new AddDocumentsDialogFragment();
                 addDocumentDialog.show(getParentFragmentManager(), "ADD DOCUMENT DIALOG");
 
                 mDocumentsAdapter.notifyDataSetChanged();

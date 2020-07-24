@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class VehicleOverhauls {
 
-    public static ArrayList<VehicleDocuments> sVehicleDocuments = new ArrayList<>();
+    public static ArrayList<VehicleOverhauls> sVehicleOverhauls = new ArrayList<>();
     private String refId;
     private String name;
     private String price;
