@@ -5,7 +5,9 @@ import android.app.Dialog;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 
@@ -13,6 +15,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.util.Pair;
 import androidx.fragment.app.DialogFragment;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -22,7 +26,9 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.shto.vehiclebulletin.R;
+import com.shto.vehiclebulletin.ui.vehicles.VehiclesViewModel;
 import com.shto.vehiclebulletin.ui.vehicles.pojos.VehicleDocuments;
+import com.shto.vehiclebulletin.ui.vehicles.pojos.VehicleGeneral;
 
 public class AddDocumentDialogFragment extends DialogFragment {
 
@@ -37,10 +43,23 @@ public class AddDocumentDialogFragment extends DialogFragment {
     private FirebaseAuth mAuth;
     private FirebaseFirestore db;
 
+    private VehiclesViewModel mVehiclesViewModel;
+    final int[] clickPosition = new int[1];
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        mAuth = FirebaseAuth.getInstance();
+        db = FirebaseFirestore.getInstance();
+    }
 
     @NonNull
     @Override
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
+//        mVehiclesViewModel =
+//                new ViewModelProvider(requireActivity()).get(VehiclesViewModel.class);
+
         View view = getLayoutInflater().inflate(R.layout.dialog_documents_add, null);
 
         // Use the Builder class for convenient dialog construction
@@ -72,6 +91,14 @@ public class AddDocumentDialogFragment extends DialogFragment {
             }
         });
 
+//        mVehiclesViewModel.getClickPosition()
+//                .observe(getViewLifecycleOwner(), new Observer<String>() {
+//                    @Override
+//                    public void onChanged(String s) {
+//                        clickPosition[0] = Integer.parseInt(s);
+//                    }
+//                });
+
         addButton = view.findViewById(R.id.btn_documents_add);
         cancelButton = view.findViewById(R.id.btn_documents_cancel);
 
@@ -97,12 +124,23 @@ public class AddDocumentDialogFragment extends DialogFragment {
         return createAlertDialog;
     }
 
+    @Nullable
     @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View view = getLayoutInflater().inflate(R.layout.dialog_documents_add, container, false);
 
-        mAuth = FirebaseAuth.getInstance();
-        db = FirebaseFirestore.getInstance();
+        mVehiclesViewModel =
+                new ViewModelProvider(requireActivity()).get(VehiclesViewModel.class);
+
+        mVehiclesViewModel.getClickPosition()
+                .observe(getViewLifecycleOwner(), new Observer<String>() {
+                    @Override
+                    public void onChanged(String s) {
+                        clickPosition[0] = Integer.parseInt(s);
+                    }
+                });
+
+        return view;
     }
 
     private boolean validateDialog() {
@@ -141,6 +179,8 @@ public class AddDocumentDialogFragment extends DialogFragment {
         if (user != null) {
             refId = db.collection("users")
                     .document(user.getUid())
+                    .collection("vehicles")
+                    .document(VehicleGeneral.sVehicleGenerals.get(clickPosition[0]).getRefId())
                     .collection("documents")
                     .document()
                     .getId();
@@ -159,6 +199,8 @@ public class AddDocumentDialogFragment extends DialogFragment {
 
             db.collection("users")
                     .document(user.getUid())
+                    .collection("vehicles")
+                    .document(VehicleGeneral.sVehicleGenerals.get(clickPosition[0]).getRefId())
                     .collection("documents")
                     .document(refId)
                     .set(vehicleDocuments)
@@ -178,6 +220,7 @@ public class AddDocumentDialogFragment extends DialogFragment {
         }
     }
 
+    // TODO watch if needed anymore
     private void updateLocal(VehicleDocuments vehicleDocuments) {
         VehicleDocuments.sVehicleDocuments.add(vehicleDocuments);
     }

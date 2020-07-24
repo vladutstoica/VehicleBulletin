@@ -86,9 +86,8 @@ public class VehiclesFragment extends Fragment implements VehiclesAdapter.OnVehi
 
         final FirebaseUser user = mAuth.getCurrentUser();
         if (user != null) {
-            String userId = user.getUid();
             db.collection("users")
-                    .document(userId)
+                    .document(user.getUid())
                     .collection("vehicles")
                     .addSnapshotListener(new EventListener<QuerySnapshot>() {
                         @Override

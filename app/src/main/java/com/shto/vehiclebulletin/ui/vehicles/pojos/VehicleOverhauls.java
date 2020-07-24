@@ -2,35 +2,31 @@ package com.shto.vehiclebulletin.ui.vehicles.pojos;
 
 import java.util.ArrayList;
 
-public class VehicleDocuments {
+public class VehicleOverhauls {
 
     public static ArrayList<VehicleDocuments> sVehicleDocuments = new ArrayList<>();
     private String refId;
     private String name;
     private String price;
-    private String buy_date;
-    private String exp_date;
+    private String buyDate;
+    private String serviceName;
 
-    public VehicleDocuments() {
-        // Default constructor required for calls to DataSnapshot.getValue(User.class)
+    public VehicleOverhauls() {
+
     }
 
-    public VehicleDocuments(
+    public VehicleOverhauls(
             String refId,
             String name,
             String price,
-            String buy_date,
-            String exp_date
+            String buyDate,
+            String serviceName
     ) {
         this.refId = refId;
         this.name = name;
         this.price = price;
-        this.buy_date = buy_date;
-        this.exp_date = exp_date;
-    }
-
-    public String getRefId() {
-        return refId;
+        this.buyDate = buyDate;
+        this.serviceName = serviceName;
     }
 
     public String getName() {
@@ -41,11 +37,11 @@ public class VehicleDocuments {
         return price;
     }
 
-    public String getBuy_date() {
-        return buy_date;
+    public String getBuyDate() {
+        return buyDate;
     }
 
-    public String getExp_date() {
-        return exp_date;
+    public String getServiceName() {
+        return serviceName;
     }
 }
