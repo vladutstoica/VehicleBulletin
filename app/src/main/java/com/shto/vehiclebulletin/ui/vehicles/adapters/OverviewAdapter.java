@@ -20,7 +20,7 @@ import java.util.ArrayList;
  * onBindViewHolder to set the view attributes based on the data and
  * getItemCount to determine the number of items
  */
-public class VehiclesAdapter extends RecyclerView.Adapter<VehiclesAdapter.MyViewHolder> {
+public class OverviewAdapter extends RecyclerView.Adapter<OverviewAdapter.MyViewHolder> {
 
     // Store a member variable for the vehicles data
     private ArrayList<VehiclesOverview> dataSet;
@@ -28,7 +28,7 @@ public class VehiclesAdapter extends RecyclerView.Adapter<VehiclesAdapter.MyView
     private OnVehicleListener mOnVehicleListener;
 
     // Pass the data array into the constructor
-    public VehiclesAdapter(ArrayList<VehiclesOverview> dataSet, OnVehicleListener onVehicleListener) {
+    public OverviewAdapter(ArrayList<VehiclesOverview> dataSet, OnVehicleListener onVehicleListener) {
         this.dataSet = dataSet;
         this.mOnVehicleListener = onVehicleListener;
     }

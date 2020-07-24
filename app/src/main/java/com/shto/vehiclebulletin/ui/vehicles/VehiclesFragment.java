@@ -25,18 +25,18 @@ import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.shto.vehiclebulletin.R;
-import com.shto.vehiclebulletin.ui.vehicles.adapters.VehiclesAdapter;
+import com.shto.vehiclebulletin.ui.vehicles.adapters.OverviewAdapter;
 import com.shto.vehiclebulletin.ui.vehicles.dialog.AddVehicleDialogFragment;
 import com.shto.vehiclebulletin.ui.vehicles.pojos.VehicleGeneral;
 import com.shto.vehiclebulletin.ui.vehicles.pojos.VehiclesOverview;
 
 
-public class VehiclesFragment extends Fragment implements VehiclesAdapter.OnVehicleListener {
+public class VehiclesFragment extends Fragment implements OverviewAdapter.OnVehicleListener {
     private static final String TAG = "vehicles";
 
     private VehiclesViewModel mVehiclesViewModel;
     // TODO: STOP SNAPSHOTLISTENER FROM LISTENING FOR FIRESTORE DATA WHEN IS OUT OF SCREEN
-    private VehiclesAdapter mAdapter;
+    private OverviewAdapter mAdapter;
     private FirebaseAuth mAuth;
     private FirebaseFirestore db;
 
@@ -81,7 +81,7 @@ public class VehiclesFragment extends Fragment implements VehiclesAdapter.OnVehi
         recyclerView.setLayoutManager(layoutManager);
 
         // Specify an adapter
-        mAdapter = new VehiclesAdapter(VehiclesOverview.sVehiclesOverviews, this);
+        mAdapter = new OverviewAdapter(VehiclesOverview.sVehiclesOverviews, this);
         recyclerView.setAdapter(mAdapter);
 
         final FirebaseUser user = mAuth.getCurrentUser();
