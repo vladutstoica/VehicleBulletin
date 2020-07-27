@@ -9,7 +9,7 @@
     tools:setcontext=".ui.vehicles.dialog.AddVehicleDialogFragment">
 
     <ImageView
-        android:id="@+id/brand_logo"
+        android:id="@+id/image_vehicles_logo"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -33,7 +33,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/brand_logo" />
+        app:layout_constraintTop_toBottomOf="@+id/image_vehicles_logo" />
 
     <com.google.android.material.chip.ChipGroup
         android:id="@+id/chip_group"
@@ -45,7 +45,7 @@
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         app:checkedChip="@+id/car_chip"
-        app:layout_constraintTop_toBottomOf="@+id/brand_logo"
+        app:layout_constraintTop_toBottomOf="@+id/image_vehicles_logo"
         app:singleLine="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -92,7 +92,7 @@
     </com.google.android.material.chip.ChipGroup>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/brandTextLayout"
+        android:id="@+id/layout_vehicles_brand"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -102,24 +102,24 @@
         android:layout_marginRight="8dp"
         android:hint="@string/prompt_brand"
         app:endIconMode="none"
-        app:layout_constraintBottom_toBottomOf="@+id/modelLayout"
+        app:layout_constraintBottom_toBottomOf="@+id/layout_vehicles_model"
         app:layout_constraintEnd_toStartOf="@+id/guideline"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/modelLayout">
+        app:layout_constraintTop_toTopOf="@+id/layout_vehicles_model">
 
         <AutoCompleteTextView
-            android:id="@+id/brandAutoCompleteTextView"
+            android:id="@+id/input_vehicles_brand"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:imeOptions="actionNext"
             android:inputType="textCapCharacters"
             android:maxLines="1"
-            android:imeOptions="actionNext"
             tools:ignore="LabelFor" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/modelLayout"
+        android:id="@+id/layout_vehicles_model"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -134,7 +134,7 @@
         app:layout_constraintTop_toBottomOf="@+id/chip_group">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/model_input"
+            android:id="@+id/input_vehicles_model"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textCapWords" />
@@ -142,7 +142,7 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
-        android:id="@+id/date_input"
+        android:id="@+id/button_vehicles_datepicker"
         style="?attr/materialButtonOutlinedStyle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -156,10 +156,10 @@
         android:text="@string/prompt_year"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/modelLayout" />
+        app:layout_constraintTop_toBottomOf="@+id/layout_vehicles_model" />
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/fuelTextLayout"
+        android:id="@+id/layout_vehicles_fuel"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -169,23 +169,23 @@
         android:layout_marginRight="8dp"
         android:hint="@string/prompt_fuel"
         app:endIconMode="none"
-        app:layout_constraintBottom_toBottomOf="@+id/colorLayout"
+        app:layout_constraintBottom_toBottomOf="@+id/layout_vehicles_color"
         app:layout_constraintEnd_toStartOf="@+id/guideline"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/colorLayout">
+        app:layout_constraintTop_toTopOf="@+id/layout_vehicles_color">
 
         <AutoCompleteTextView
-            android:id="@+id/fuelAutocompleteTextView"
+            android:id="@+id/input_vehicles_fuel"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="textCapWords"
             android:imeOptions="actionNext"
+            android:inputType="textCapWords"
             tools:ignore="LabelFor" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/colorLayout"
+        android:id="@+id/layout_vehicles_color"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -197,10 +197,10 @@
         android:hint="@string/prompt_color"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/guideline"
-        app:layout_constraintTop_toBottomOf="@+id/date_input">
+        app:layout_constraintTop_toBottomOf="@+id/button_vehicles_datepicker">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/input_overhauls_name"
+            android:id="@+id/input_vehicles_color"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textCapWords" />
@@ -208,7 +208,7 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/licencePlateLayout"
+        android:id="@+id/layout_vehicles_licence"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -221,10 +221,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/colorLayout">
+        app:layout_constraintTop_toBottomOf="@+id/layout_vehicles_color">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/licence_plate_input"
+            android:id="@+id/input_vehicles_licence"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textCapCharacters" />
@@ -232,7 +232,7 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
-        android:id="@+id/add_vehicle_button"
+        android:id="@+id/button_vehicles_add"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -242,8 +242,9 @@
         android:layout_marginRight="8dp"
         android:text="@string/add_button"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="@+id/guideline"
-        app:layout_constraintTop_toBottomOf="@+id/licencePlateLayout" />
+        app:layout_constraintTop_toBottomOf="@+id/layout_vehicles_licence" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline"
@@ -253,8 +254,7 @@
         app:layout_constraintGuide_percent="0.5" />
 
     <Button
-        android:id="@+id/cancel_vehicle_button"
-        style="@style/Widget.MaterialComponents.Button.TextButton"
+        android:id="@+id/button_vehicles_cancel"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -264,7 +264,8 @@
         android:layout_marginRight="8dp"
         android:text="@string/cancel"
         app:layout_constraintEnd_toStartOf="@+id/guideline"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/licencePlateLayout" />
+        app:layout_constraintTop_toBottomOf="@+id/layout_vehicles_licence" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

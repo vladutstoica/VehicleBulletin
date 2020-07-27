@@ -29,7 +29,7 @@ public class ProfileFragment extends Fragment {
 
         View root = inflater.inflate(R.layout.fragment_profile, container, false);
 
-        final TextView textView = root.findViewById(R.id.text_notifications);
+        final TextView textView = root.findViewById(R.id.text_profile_name);
 
         mProfileViewModel = new ViewModelProvider(this).get(ProfileViewModel.class);
         mProfileViewModel.getProfileName().observe(getViewLifecycleOwner(), new Observer<String>() {
@@ -39,7 +39,7 @@ public class ProfileFragment extends Fragment {
             }
         });
 
-        Button signOutButton = root.findViewById(R.id.signout_button);
+        Button signOutButton = root.findViewById(R.id.button_profile_signout);
         signOutButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

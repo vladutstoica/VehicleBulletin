@@ -65,11 +65,11 @@ public class LoginFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_login, container, false);
 
-        mEmail = root.findViewById(R.id.email_create_input);
-        mPassword = root.findViewById(R.id.password_create_input);
+        mEmail = root.findViewById(R.id.input_login_email);
+        mPassword = root.findViewById(R.id.input_login_password);
 
         // LOGIN button
-        Button loginButton = root.findViewById(R.id.login_button);
+        Button loginButton = root.findViewById(R.id.button_login_login);
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -78,7 +78,7 @@ public class LoginFragment extends Fragment {
         });
 
         // GoToRegister button
-        Button goToRegister = root.findViewById(R.id.register_goto_button);
+        Button goToRegister = root.findViewById(R.id.button_login_register);
         goToRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

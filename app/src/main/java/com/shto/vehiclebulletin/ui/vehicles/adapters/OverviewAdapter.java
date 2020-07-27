@@ -75,11 +75,11 @@ public class OverviewAdapter extends RecyclerView.Adapter<OverviewAdapter.MyView
             // to access the context from any ViewHolder instance.
             super(itemView);
 
-            this.mLicencePlateTextView = itemView.findViewById(R.id.licence_plate);
-            this.mVehicleModelTextView = itemView.findViewById(R.id.vehicle_model);
-            this.mRenewTextView = itemView.findViewById(R.id.renew);
-            this.mTotalCostTextView = itemView.findViewById(R.id.total_cost);
-            this.mBrandLogoId = itemView.findViewById(R.id.brand_logo);
+            this.mLicencePlateTextView = itemView.findViewById(R.id.text_vehicles_licence);
+            this.mVehicleModelTextView = itemView.findViewById(R.id.text_vehicles_model);
+            this.mRenewTextView = itemView.findViewById(R.id.text_vehicles_renew);
+            this.mTotalCostTextView = itemView.findViewById(R.id.text_vehicles_cost);
+            this.mBrandLogoId = itemView.findViewById(R.id.image_vehicles_logo);
 
             this.onVehicleListener = onVehicleListener;
 

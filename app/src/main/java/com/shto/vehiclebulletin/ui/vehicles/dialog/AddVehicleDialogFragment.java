@@ -65,12 +65,12 @@ public class AddVehicleDialogFragment extends DialogFragment {
 
         // Add vehicle dialog member variable
         mChipGroup = view.findViewById(R.id.chip_group);
-        mBrand = view.findViewById(R.id.brandAutoCompleteTextView);
-        mModel = view.findViewById(R.id.model_input);
-        mBuildDate = view.findViewById(R.id.date_input);
-        mFuel = view.findViewById(R.id.fuelAutocompleteTextView);
-        mColor = view.findViewById(R.id.input_overhauls_name);
-        mLicencePlate = view.findViewById(R.id.licence_plate_input);
+        mBrand = view.findViewById(R.id.input_vehicles_brand);
+        mModel = view.findViewById(R.id.input_vehicles_model);
+        mBuildDate = view.findViewById(R.id.button_vehicles_datepicker);
+        mFuel = view.findViewById(R.id.input_vehicles_fuel);
+        mColor = view.findViewById(R.id.input_vehicles_color);
+        mLicencePlate = view.findViewById(R.id.input_vehicles_licence);
 
         selectedChipText = getResources().getString(R.string.prompt_car);
         // Chip group selection listener
@@ -109,8 +109,8 @@ public class AddVehicleDialogFragment extends DialogFragment {
         autoTextView.setAdapter(adapter);
 
         // Custom buttons
-        Button addButton = view.findViewById(R.id.add_vehicle_button);
-        Button cancelButton = view.findViewById(R.id.cancel_vehicle_button);
+        Button addButton = view.findViewById(R.id.button_vehicles_add);
+        Button cancelButton = view.findViewById(R.id.button_vehicles_cancel);
 
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override

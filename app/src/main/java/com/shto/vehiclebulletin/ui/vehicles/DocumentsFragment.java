@@ -103,7 +103,7 @@ public class DocumentsFragment extends Fragment {
 
 
 
-        ExtendedFloatingActionButton fab = view.findViewById(R.id.documents_fab);
+        ExtendedFloatingActionButton fab = view.findViewById(R.id.fab_documents);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

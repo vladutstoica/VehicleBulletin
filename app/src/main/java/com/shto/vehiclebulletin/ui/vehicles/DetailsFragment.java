@@ -31,12 +31,12 @@ public class DetailsFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         detailsFragmentAdapter = new DetailsFragmentAdapter(this);
-        viewPager = view.findViewById(R.id.details_pager);
+        viewPager = view.findViewById(R.id.view_details_pager);
         viewPager.setAdapter(detailsFragmentAdapter);
 
         titles = getResources().getStringArray(R.array.tab_layout);
 
-        TabLayout tabLayout = view.findViewById(R.id.tab_layout);
+        TabLayout tabLayout = view.findViewById(R.id.tab_details_layout);
         new TabLayoutMediator(tabLayout, viewPager,
                 new TabLayoutMediator.TabConfigurationStrategy() {
                     @Override

@@ -5,7 +5,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
@@ -17,7 +16,6 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.shto.vehiclebulletin.R;
 import com.shto.vehiclebulletin.ui.vehicles.adapters.OverhaulsAdapter;
-import com.shto.vehiclebulletin.ui.vehicles.dialog.AddOverhaulsDialogFragment;
 import com.shto.vehiclebulletin.ui.vehicles.pojos.VehicleOverhauls;
 
 public class OverhaulsFragment extends Fragment {
@@ -117,8 +115,16 @@ public class OverhaulsFragment extends Fragment {
             public void onClick(View v) {
                 // When you want to show your dialog, create an instance of your DialogFragment
                 // and call show(), passing the FragmentManager and a tag name for the dialog fragment.
-                DialogFragment addOverhaulsDialog = new AddOverhaulsDialogFragment();
-                addOverhaulsDialog.show(getParentFragmentManager(), "ADD OVERHAULS DIALOG");
+//                DialogFragment addOverhaulsDialog = new AddOverhaulsDialogFragment();
+//                addOverhaulsDialog.show(getParentFragmentManager(), "ADD OVERHAULS DIALOG");
+
+                VehicleOverhauls.sVehicleOverhauls.add(new VehicleOverhauls(
+                        "12ab",
+                        "Placute frana",
+                        "300",
+                        "20 iun. 2020",
+                        "Costel SRL"
+                ));
 
                 mOverhaulsAdapter.notifyDataSetChanged();
             }

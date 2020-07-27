@@ -20,15 +20,14 @@ import com.google.android.material.datepicker.MaterialDatePicker;
 import com.google.android.material.datepicker.MaterialPickerOnPositiveButtonClickListener;
 import com.shto.vehiclebulletin.R;
 import com.shto.vehiclebulletin.ui.vehicles.VehiclesViewModel;
-import com.shto.vehiclebulletin.ui.vehicles.pojos.VehicleOverhauls;
 
 public class AddOverhaulsDialogFragment extends DialogFragment {
     private static final String TAG = "overhauls";
 
     EditText mOhName;
     EditText mOhPrice;
-    EditText mOhBuyDate;
     EditText mOhServiceName;
+    Button mOhBuyDate;
 
     Button addButton;
     Button cancelButton;
@@ -66,6 +65,7 @@ public class AddOverhaulsDialogFragment extends DialogFragment {
         mOhName = view.findViewById(R.id.input_overhauls_name);
         mOhPrice = view.findViewById(R.id.input_overhauls_price);
         mOhServiceName = view.findViewById(R.id.input_overhauls_servicename);
+        mOhBuyDate = view.findViewById(R.id.button_overhauls_datepicker);
         mOhBuyDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -79,8 +79,8 @@ public class AddOverhaulsDialogFragment extends DialogFragment {
             }
         });
 
-        addButton = view.findViewById(R.id.btn_overhauls_add);
-        cancelButton = view.findViewById(R.id.btn_overhauls_cancel);
+        addButton = view.findViewById(R.id.button_overhauls_add);
+        cancelButton = view.findViewById(R.id.button_overhauls_cancel);
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -153,14 +153,6 @@ public class AddOverhaulsDialogFragment extends DialogFragment {
 //        FirebaseUser user = mAuth.getCurrentUser();
 //
 //        updateDB(user);
-
-        VehicleOverhauls.sVehicleOverhauls.add(new VehicleOverhauls(
-                "12ab",
-                "Placute frana",
-                "300",
-                "20 iun. 2020",
-                "Costel SRL"
-        ));
     }
 
 }

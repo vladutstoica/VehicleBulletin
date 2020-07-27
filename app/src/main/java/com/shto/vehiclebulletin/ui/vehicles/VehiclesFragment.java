@@ -68,7 +68,7 @@ public class VehiclesFragment extends Fragment implements OverviewAdapter.OnVehi
 
         final View view = inflater.inflate(R.layout.fragment_vehicles, container, false);
 
-        RecyclerView recyclerView = view.findViewById(R.id.vehicles_recycler_view);
+        RecyclerView recyclerView = view.findViewById(R.id.recycler_vehicles);
         // TODO: make below like work
         // mRecyclerView = inflater.inflate(R.layout.fragment_vehicles, container, false);
 
@@ -111,7 +111,7 @@ public class VehiclesFragment extends Fragment implements OverviewAdapter.OnVehi
                     });
         }
 
-        ExtendedFloatingActionButton fab = view.findViewById(R.id.extended_fab);
+        ExtendedFloatingActionButton fab = view.findViewById(R.id.fab_vehicles);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

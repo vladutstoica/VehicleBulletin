@@ -42,12 +42,12 @@ public class GeneralFragment extends Fragment {
 
         View root = inflater.inflate(R.layout.fragment_general, container, false);
 
-        brand = root.findViewById(R.id.brand_view);
-        model = root.findViewById(R.id.model_view);
-        buildDate = root.findViewById(R.id.build_view);
-        fuel = root.findViewById(R.id.fuel_view);
-        color = root.findViewById(R.id.color_view);
-        licencePlate = root.findViewById(R.id.licence_view);
+        brand = root.findViewById(R.id.text_general_brand);
+        model = root.findViewById(R.id.text_general_model);
+        buildDate = root.findViewById(R.id.text_general_builddate);
+        fuel = root.findViewById(R.id.text_general_fuel);
+        color = root.findViewById(R.id.text_general_color);
+        licencePlate = root.findViewById(R.id.text_general_licence);
 
         mVehiclesViewModel.getClickPosition()
                 .observe(getViewLifecycleOwner(), new Observer<String>() {

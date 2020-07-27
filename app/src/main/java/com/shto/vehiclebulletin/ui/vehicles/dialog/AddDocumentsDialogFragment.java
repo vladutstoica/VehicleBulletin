@@ -75,7 +75,7 @@ public class AddDocumentsDialogFragment extends DialogFragment {
         // Document's dialog member variables
         mDocName = view.findViewById(R.id.input_documents_name);
         mDocPrice = view.findViewById(R.id.input_documents_price);
-        mDocValidDates = view.findViewById(R.id.btn_documents_daterange);
+        mDocValidDates = view.findViewById(R.id.button_documents_daterange);
 
         // DateRange Picker Dialog listener
         mDocValidDates.setOnClickListener(new View.OnClickListener() {
@@ -99,8 +99,8 @@ public class AddDocumentsDialogFragment extends DialogFragment {
 //                    }
 //                });
 
-        addButton = view.findViewById(R.id.btn_documents_add);
-        cancelButton = view.findViewById(R.id.btn_documents_cancel);
+        addButton = view.findViewById(R.id.button_documents_add);
+        cancelButton = view.findViewById(R.id.button_documents_cancel);
 
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override
