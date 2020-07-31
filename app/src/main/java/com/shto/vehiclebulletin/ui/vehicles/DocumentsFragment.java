@@ -5,7 +5,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
@@ -17,7 +16,6 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.shto.vehiclebulletin.R;
 import com.shto.vehiclebulletin.ui.vehicles.adapters.DocumentsAdapter;
-import com.shto.vehiclebulletin.ui.vehicles.dialog.AddDocumentsDialogFragment;
 import com.shto.vehiclebulletin.ui.vehicles.pojos.VehicleDocuments;
 
 public class DocumentsFragment extends Fragment {
@@ -109,8 +107,16 @@ public class DocumentsFragment extends Fragment {
             public void onClick(View v) {
                 // When you want to show your dialog, create an instance of your DialogFragment
                 // and call show(), passing the FragmentManager and a tag name for the dialog fragment.
-                DialogFragment addDocumentDialog = new AddDocumentsDialogFragment();
-                addDocumentDialog.show(getParentFragmentManager(), "ADD DOCUMENT DIALOG");
+                //DialogFragment addDocumentDialog = new AddDocumentsDialogFragment();
+                //addDocumentDialog.show(getParentFragmentManager(), "ADD DOCUMENT DIALOG");
+
+                VehicleDocuments.sVehicleDocuments.add(new VehicleDocuments(
+                        "1b",
+                        "RCA",
+                        "200",
+                        "1 iun. 2020",
+                        "1 iun. 2021"
+                ));
 
                 mDocumentsAdapter.notifyDataSetChanged();
             }

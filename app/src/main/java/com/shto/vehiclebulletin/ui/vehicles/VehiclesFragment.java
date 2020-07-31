@@ -9,7 +9,6 @@ import android.view.ViewGroup;
 import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
@@ -19,14 +18,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
-import com.google.firebase.firestore.QuerySnapshot;
 import com.shto.vehiclebulletin.R;
 import com.shto.vehiclebulletin.ui.vehicles.adapters.OverviewAdapter;
-import com.shto.vehiclebulletin.ui.vehicles.dialog.AddVehicleDialogFragment;
 import com.shto.vehiclebulletin.ui.vehicles.pojos.VehicleGeneral;
 import com.shto.vehiclebulletin.ui.vehicles.pojos.VehiclesOverview;
 
@@ -84,32 +79,32 @@ public class VehiclesFragment extends Fragment implements OverviewAdapter.OnVehi
         mAdapter = new OverviewAdapter(VehiclesOverview.sVehiclesOverviews, this);
         recyclerView.setAdapter(mAdapter);
 
-        final FirebaseUser user = mAuth.getCurrentUser();
-        if (user != null) {
-            db.collection("users")
-                    .document(user.getUid())
-                    .collection("vehicles")
-                    .addSnapshotListener(new EventListener<QuerySnapshot>() {
-                        @Override
-                        public void onEvent(@Nullable QuerySnapshot value,
-                                            @Nullable FirebaseFirestoreException e) {
-                            if (e != null) {
-                                Log.w(TAG, "Listen failed.", e);
-                                return;
-                            }
-
-                            VehiclesOverview.sVehiclesOverviews.clear();
-                            VehicleGeneral.sVehicleGenerals.clear();
-
-                            if (value != null) {
-                                for (QueryDocumentSnapshot doc : value) {
-                                    retrieveDB(user, doc);
-                                }
-                            }
-                            mAdapter.notifyDataSetChanged();
-                        }
-                    });
-        }
+//        final FirebaseUser user = mAuth.getCurrentUser();
+//        if (user != null) {
+//            db.collection("users")
+//                    .document(user.getUid())
+//                    .collection("vehicles")
+//                    .addSnapshotListener(new EventListener<QuerySnapshot>() {
+//                        @Override
+//                        public void onEvent(@Nullable QuerySnapshot value,
+//                                            @Nullable FirebaseFirestoreException e) {
+//                            if (e != null) {
+//                                Log.w(TAG, "Listen failed.", e);
+//                                return;
+//                            }
+//
+//                            VehiclesOverview.sVehiclesOverviews.clear();
+//                            VehicleGeneral.sVehicleGenerals.clear();
+//
+//                            if (value != null) {
+//                                for (QueryDocumentSnapshot doc : value) {
+//                                    retrieveDB(user, doc);
+//                                }
+//                            }
+//                            mAdapter.notifyDataSetChanged();
+//                        }
+//                    });
+//        }
 
         ExtendedFloatingActionButton fab = view.findViewById(R.id.fab_vehicles);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -117,8 +112,40 @@ public class VehiclesFragment extends Fragment implements OverviewAdapter.OnVehi
             public void onClick(View v) {
                 // When you want to show your dialog, create an instance of your DialogFragment
                 // and call show(), passing the FragmentManager and a tag name for the dialog fragment.
-                DialogFragment addVehicleDialog = new AddVehicleDialogFragment();
-                addVehicleDialog.show(getParentFragmentManager(), "ADD DIALOG");
+                //DialogFragment addVehicleDialog = new AddVehicleDialogFragment();
+                //addVehicleDialog.show(getParentFragmentManager(), "ADD DIALOG");
+
+                final VehicleGeneral vehicleGeneral = new VehicleGeneral(
+                        "22e",
+                        "car",
+                        "OPEL",
+                        "Astra J",
+                        "12.05.2014",
+                        "Diesel",
+                        "Brown",
+                        "PH 19 SVM"
+                );
+
+                VehicleGeneral.sVehicleGenerals.add(vehicleGeneral);
+
+                VehiclesOverview data = new VehiclesOverview();
+                String dataRenew = data.getRenew();
+                String dataCost = data.getTotalCost();
+                int dataLogo = data.getBrandLogoId();
+
+                VehiclesOverview.sVehiclesOverviews.add(
+                        new VehiclesOverview(
+                                vehicleGeneral.getRefId(),
+                                vehicleGeneral.getLicence(),
+                                vehicleGeneral.getBrand() + " " + vehicleGeneral.getModel(),
+                                dataRenew,
+                                dataCost,
+                                dataLogo
+                        )
+                );
+
+                mAdapter.notifyDataSetChanged();
+
             }
         });
 
@@ -161,5 +188,6 @@ public class VehiclesFragment extends Fragment implements OverviewAdapter.OnVehi
     @Override
     public void onVehicleLongClick(int position) {
         Log.d(TAG, "onVehicleClick: long click registered on position " + position);
+        mAdapter.sCard();
     }
 }

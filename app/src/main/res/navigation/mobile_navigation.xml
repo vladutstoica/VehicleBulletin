@@ -59,6 +59,6 @@
     <fragment
         android:id="@+id/detailsFragment"
         android:name="com.shto.vehiclebulletin.ui.vehicles.DetailsFragment"
-        android:label="fragment_details"
+        android:label="Details"
         tools:layout="@layout/fragment_details" />
 </navigation>

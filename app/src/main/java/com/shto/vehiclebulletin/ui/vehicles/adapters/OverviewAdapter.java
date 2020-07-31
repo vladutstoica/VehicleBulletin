@@ -24,7 +24,7 @@ public class OverviewAdapter extends RecyclerView.Adapter<OverviewAdapter.MyView
 
     // Store a member variable for the vehicles data
     private ArrayList<VehiclesOverview> dataSet;
-
+    MaterialCardView cardView;
     private OnVehicleListener mOnVehicleListener;
 
     // Pass the data array into the constructor
@@ -38,7 +38,7 @@ public class OverviewAdapter extends RecyclerView.Adapter<OverviewAdapter.MyView
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         // Inflate the custom layout
-        MaterialCardView cardView = (MaterialCardView) LayoutInflater.from(parent.getContext())
+        cardView = (MaterialCardView) LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.card_vehicles, parent, false);
         // Return a new holder instance
         return new MyViewHolder(cardView, mOnVehicleListener);
@@ -103,6 +103,10 @@ public class OverviewAdapter extends RecyclerView.Adapter<OverviewAdapter.MyView
     @Override
     public int getItemCount() {
         return dataSet.size();
+    }
+
+    public void sCard() {
+        cardView.setChecked(true);
     }
 
     public interface OnVehicleListener {
