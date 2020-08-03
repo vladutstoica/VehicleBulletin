@@ -1,26 +1,25 @@
 <resources>
     <string name="app_name">Vehicle Bulletin</string>
+
+    <!-- Page's titles -->
     <string name="title_home">Home</string>
     <string name="title_vehicles">Vehicles</string>
     <string name="title_profile">Profile</string>
+    <string name="title_login">Login</string>
+    <string name="title_register">Register</string>
+    <string name="title_details">Details</string>
 
-    <string name="brand_logo">Brand logo</string>
-    <string name="vehicle_type">Vehicle type</string>
-    <string name="fab_vehicles">Add Vehicles</string>
-
-    <!-- Strings related to vehicles types -->
-    <string name="prompt_car">Car</string>
-    <string name="prompt_motorcycle">Motorcycle</string>
-    <string name="prompt_truck">Truck</string>
-
-    <!-- Strings related to login -->
-    <string name="accessibility_logo">Application Logo</string>
+    <!-- Strings related to LOGIN -->
+    <string name="content_login_logo">Application Logo</string>
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password</string>
     <string name="prompt_login">LOGIN</string>
-    <string name="prompt_register">REGISTER</string>
+
     <string name="prompt_create_account">CREATE ACCOUNT</string>
     <string name="prompt_sign_out">SIGN OUT</string>
+
+    <!-- Strings related to REGISTER -->
+    <string name="prompt_register">REGISTER</string>
 
     <string name="action_sign_in">Sign in or register</string>
     <string name="action_sign_in_short">Sign in</string>
@@ -30,6 +29,15 @@
     <string name="login_failed">"Login failed"</string>
     <string name="prompt_confirm_password">Confirm password</string>
     <string name="prompt_name">Full Name</string>
+
+    <string name="brand_logo">Brand logo</string>
+    <string name="vehicle_type">Vehicle type</string>
+    <string name="fab_vehicles">Add Vehicles</string>
+
+    <!-- Strings related to vehicles types -->
+    <string name="prompt_car">Car</string>
+    <string name="prompt_motorcycle">Motorcycle</string>
+    <string name="prompt_truck">Truck</string>
 
     <!-- Strings related to profile -->
     <string name="profile_picture">Profile picture</string>

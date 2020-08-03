@@ -9,12 +9,7 @@
         app:showAsAction="ifRoom" />
 
     <item
-        android:id="@+id/more"
-        android:title="More"
-        app:showAsAction="never" />
-
-    <item
-        android:id="@+id/mor2e"
-        android:title="Mor2e"
+        android:id="@+id/settings"
+        android:title="Settings"
         app:showAsAction="never" />
 </menu>
