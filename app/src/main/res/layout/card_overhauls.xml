@@ -7,12 +7,14 @@
     android:checkable="true"
     android:clickable="true"
     android:focusable="true"
-    card_view:cardCornerRadius="4dp"
-    card_view:cardElevation="8dp">
+    card_view:cardElevation="0dp">
 
+    <!-- TODO maxheight changes -->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@drawable/ic_card_details_bg"
+        android:maxHeight="60dp">
 
         <TextView
             android:id="@+id/text_overhauls_name"
@@ -21,8 +23,9 @@
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
             android:text="@string/overhauls_name"
+            android:textSize="18sp"
             card_view:layout_constraintBottom_toTopOf="@+id/guideline_horizontal"
-            card_view:layout_constraintEnd_toStartOf="@+id/guideline_vertical"
+            card_view:layout_constraintEnd_toEndOf="parent"
             card_view:layout_constraintStart_toStartOf="parent"
             card_view:layout_constraintTop_toTopOf="parent" />
 
@@ -33,10 +36,10 @@
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
             android:text="@string/overhauls_price"
-            card_view:layout_constraintBottom_toTopOf="@+id/guideline_horizontal"
+            card_view:layout_constraintBottom_toBottomOf="parent"
             card_view:layout_constraintEnd_toEndOf="parent"
-            card_view:layout_constraintStart_toStartOf="@+id/guideline_vertical"
-            card_view:layout_constraintTop_toTopOf="parent" />
+            card_view:layout_constraintStart_toStartOf="parent"
+            card_view:layout_constraintTop_toTopOf="@+id/guideline_horizontal" />
 
         <TextView
             android:id="@+id/text_overhauls_buydate"
@@ -46,7 +49,7 @@
             android:layout_marginBottom="8dp"
             android:text="@string/overhauls_buydate"
             card_view:layout_constraintBottom_toBottomOf="parent"
-            card_view:layout_constraintEnd_toStartOf="@+id/guideline_vertical"
+            card_view:layout_constraintEnd_toStartOf="@+id/text_overhauls_price"
             card_view:layout_constraintStart_toStartOf="parent"
             card_view:layout_constraintTop_toTopOf="@+id/guideline_horizontal" />
 
@@ -59,7 +62,7 @@
             android:text="@string/overhauls_servicename"
             card_view:layout_constraintBottom_toBottomOf="parent"
             card_view:layout_constraintEnd_toEndOf="parent"
-            card_view:layout_constraintStart_toStartOf="@+id/guideline_vertical"
+            card_view:layout_constraintStart_toEndOf="@+id/text_overhauls_price"
             card_view:layout_constraintTop_toTopOf="@+id/guideline_horizontal" />
 
         <androidx.constraintlayout.widget.Guideline
@@ -69,11 +72,5 @@
             android:orientation="horizontal"
             card_view:layout_constraintGuide_percent="0.5" />
 
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guideline_vertical"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            card_view:layout_constraintGuide_percent="0.5" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </com.google.android.material.card.MaterialCardView>
