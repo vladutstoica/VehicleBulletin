@@ -17,19 +17,22 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+
         android:id="@+id/fab_vehicles"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
-        android:layout_margin="16dp"
-        android:layout_marginEnd="24dp"
-        android:layout_marginRight="24dp"
-        android:layout_marginBottom="24dp"
-        android:text="@string/fab_vehicles"
         android:clickable="true"
         android:focusable="true"
-        app:icon="@drawable/ic_baseline_add_24"
+        android:paddingStart="32dp"
+        android:paddingEnd="24dp"
+        android:text="@string/fab_vehicles"
+        android:textColor="#ffffff"
+        app:backgroundTint="#94926D"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:shapeAppearanceOverlay="@style/fab_vehicle"
+        android:paddingRight="24dp"
+        android:paddingLeft="32dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

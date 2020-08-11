@@ -3,7 +3,6 @@ package com.shto.vehiclebulletin.ui.vehicles.adapters;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -52,7 +51,6 @@ public class OverviewAdapter extends RecyclerView.Adapter<OverviewAdapter.MyView
         holder.mVehicleModelTextView.setText(dataSet.get(position).getVehicleModel());
         holder.mRenewTextView.setText(dataSet.get(position).getRenew());
         holder.mTotalCostTextView.setText(dataSet.get(position).getTotalCost());
-        holder.mBrandLogoId.setImageResource(dataSet.get(position).getBrandLogoId());
     }
 
     // Provide a direct reference to each of the views within a data item
@@ -64,7 +62,6 @@ public class OverviewAdapter extends RecyclerView.Adapter<OverviewAdapter.MyView
         private TextView mVehicleModelTextView;
         private TextView mRenewTextView;
         private TextView mTotalCostTextView;
-        private ImageView mBrandLogoId;
 
         OnVehicleListener onVehicleListener;
 
@@ -79,7 +76,6 @@ public class OverviewAdapter extends RecyclerView.Adapter<OverviewAdapter.MyView
             this.mVehicleModelTextView = itemView.findViewById(R.id.text_vehicles_model);
             this.mRenewTextView = itemView.findViewById(R.id.text_vehicles_renew);
             this.mTotalCostTextView = itemView.findViewById(R.id.text_vehicles_cost);
-            this.mBrandLogoId = itemView.findViewById(R.id.image_vehicles_logo);
 
             this.onVehicleListener = onVehicleListener;
 
