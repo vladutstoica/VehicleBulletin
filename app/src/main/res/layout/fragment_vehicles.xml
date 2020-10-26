@@ -25,14 +25,14 @@
         android:clickable="true"
         android:focusable="true"
         android:paddingStart="32dp"
+        android:paddingLeft="32dp"
         android:paddingEnd="24dp"
+        android:paddingRight="24dp"
         android:text="@string/fab_vehicles"
         android:textColor="#ffffff"
-        app:backgroundTint="#94926D"
+        app:backgroundTint="@color/colorButtons"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:shapeAppearanceOverlay="@style/fab_vehicle"
-        android:paddingRight="24dp"
-        android:paddingLeft="32dp" />
+        app:shapeAppearanceOverlay="@style/fab_vehicle" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

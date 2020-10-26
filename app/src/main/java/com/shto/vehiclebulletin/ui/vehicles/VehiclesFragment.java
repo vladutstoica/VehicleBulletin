@@ -188,6 +188,5 @@ public class VehiclesFragment extends Fragment implements OverviewAdapter.OnVehi
     @Override
     public void onVehicleLongClick(int position) {
         Log.d(TAG, "onVehicleClick: long click registered on position " + position);
-        mAdapter.sCard();
     }
 }

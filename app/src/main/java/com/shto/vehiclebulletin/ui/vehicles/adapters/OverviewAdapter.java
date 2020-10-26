@@ -101,10 +101,6 @@ public class OverviewAdapter extends RecyclerView.Adapter<OverviewAdapter.MyView
         return dataSet.size();
     }
 
-    public void sCard() {
-        cardView.setChecked(true);
-    }
-
     public interface OnVehicleListener {
         void onVehicleClick(int position);
         void onVehicleLongClick(int position);

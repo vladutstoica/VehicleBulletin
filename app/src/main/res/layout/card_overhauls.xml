@@ -7,7 +7,8 @@
     android:checkable="true"
     android:clickable="true"
     android:focusable="true"
-    card_view:cardElevation="0dp">
+    card_view:cardElevation="0dp"
+    card_view:cardCornerRadius="10dp">
 
     <!-- TODO maxheight changes -->
     <androidx.constraintlayout.widget.ConstraintLayout

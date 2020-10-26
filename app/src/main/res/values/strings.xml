@@ -3,7 +3,7 @@
 
     <!-- Page's titles -->
     <string name="title_home">Home</string>
-    <string name="title_vehicles">Vehicle</string>
+    <string name="title_vehicles">Vehicles</string>
     <string name="title_profile">Profile</string>
     <string name="title_login">Login</string>
     <string name="title_register">Register</string>
